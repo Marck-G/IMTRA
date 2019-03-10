@@ -1,0 +1,33 @@
+// ############ BTNS ############
+
+%btn-no-border {
+    @extend %btn-base;
+
+    border: none;
+}
+
+%btn-radious {
+    @extend %btn-no-border;
+
+    @include radious($btn-border-radious);
+}
+
+%btn-radious-border {
+    @extend %btn-base;
+
+    @include radious($btn-border-radious);
+
+    border-style: solid;
+    border-width: 2px;
+}
+
+%btn-radious-only-border {
+    @extend %btn-radious-border;
+
+    background: white;
+
+    &:hover {
+        color: $black !important;
+        border-color: $black;
+    }
+}

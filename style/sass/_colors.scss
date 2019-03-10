@@ -1,0 +1,129 @@
+$white: white;
+$black: black;
+$black1: #333;
+
+$orange: rgb(255, 178, 34);
+$yellow: rgb(255, 255, 0);
+$red: rgb(240, 38, 38);
+$blue: rgb(65, 129, 224);
+$cian: rgb(71, 194, 243);
+$teal: rgb(55, 228, 170);
+$green: rgb(41, 228, 41);
+$purple: rgb(188, 52, 230);
+$pink: rgb(233, 57, 233);
+
+// ############ GRADIENT ############
+$g-blue-base: rgb(69, 155, 236);
+$g-blue-acent: rgb(79, 223, 211);
+
+$g-red-base: rgb(236, 49, 49);
+$g-red-acent: rgb(255, 130, 58);
+
+$g-green-base: rgb(33, 206, 41);
+$g-green-acent: rgb(213, 255, 98);
+
+$g-yellow-base: rgb(255, 255, 0);
+$g-yellow-acent: rgb(255, 174, 0);
+
+$g-orange-base: rgb(255, 153, 0);
+$g-orange-acent: rgb(255, 217, 0);
+
+$g-purple-base: rgb(176, 5, 255);
+$g-purple-acent: rgb(255, 47, 238);
+
+// ############# CLASSES #############
+.orange {
+    background: $orange;
+}
+
+.yellow {
+    background: $yellow;
+}
+
+.red {
+    background: $red;
+}
+
+.purple {
+    background: $purple;
+}
+
+.blue {
+    background: $blue;
+}
+
+.cian {
+    background: $cian;
+}
+
+.teal {
+    background: $teal;
+}
+
+.green {
+    background: $green;
+}
+
+.pink {
+    background: $pink;
+}
+
+.black {
+    background: $black;
+}
+
+.dark-gray {
+    background: $black1;
+}
+
+.white {
+    background: $white;
+}
+
+.text-orange {
+    color: $orange;
+}
+
+.text-yellow {
+    color: $yellow;
+}
+
+.text-red {
+    color: $red;
+}
+
+.text-purple {
+    color: $purple;
+}
+
+.text-blue {
+    color: $blue;
+}
+
+.text-cian {
+    color: $cian;
+}
+
+.text-teal {
+    color: $teal;
+}
+
+.text-green {
+    color: $green;
+}
+
+.text-pink {
+    color: $pink;
+}
+
+.text-black {
+    color: $black;
+}
+
+.text-dark-gray {
+    color: $black1;
+}
+
+.text-white {
+    color: $white;
+}

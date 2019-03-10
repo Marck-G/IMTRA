@@ -1,0 +1,43 @@
+@import "vars";
+
+@import "colors";
+
+@import "functions";
+
+@import "class";
+
+body,
+div {
+    margin: 0;
+    padding: 0;
+}
+
+.fadeIn {
+    display: none;
+}
+
+section {
+    width: $section-width - $section-padding-pc * 2;
+    min-height: 40vh;
+    padding: $section-padding-pc;
+
+    @include relative-center;
+
+    @media screen and (max-width: $tablet) {
+        width: $section-width - $section-padding-tablet * 2;
+        padding: 20px $section-padding-tablet;
+    }
+
+    &:nth-child(even) {
+        @media screen and (max-width: $tablet) {
+            background-color: $black;
+            color: white;
+        }
+    }
+}
+
+@import "texts";
+
+@import "butons";
+
+@import "inputs";

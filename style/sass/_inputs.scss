@@ -1,0 +1,78 @@
+@import "vars";
+
+@import "functions";
+
+@import "colors";
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/// make a search input with linear-gradient background
+/// @param {color} $first 
+/// @param {color} $second 
+/// @param {*} $direction [20deg] 
+/// @param {*} $borderRadius [20px]
+
+@mixin makeSearch($first, $second, $direction: 20deg, $borderRadius: 20px) {
+    width: 100%;
+
+    input[type="text"] {
+        width: calc(95% - 90px);
+        margin: 0;
+        padding: 0;
+        border: none;
+        height: 100%;
+        display: inline-block;
+        position: relative;
+        top: -9px;
+        outline: none;
+        padding: 8px 10px;
+        border-radius: $borderRadius 0 0 $borderRadius;
+        margin-right: -10px;
+        background: linear-gradient(20deg, $first, $second);
+        color: white;
+
+        &::placeholder {
+            color: white;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .search-icon {
+        margin: 0;
+        position: relative;
+        top: 2px;
+        cursor: pointer;
+        width: 50px;
+        border-radius: 0 $borderRadius $borderRadius 0;
+        padding: 10px 20px;
+        transition: all .8s;
+        background: black;
+        color: white;
+
+        &:hover {
+            filter: invert(100%);
+        }
+    }
+}
+
+.search-blue {
+    @include makeSearch($g-blue-base 10%, ($cian + #055) 120%, 45deg);
+}
+
+.search-red {
+    @include makeSearch($g-red-base, $pink 60%, -45deg);
+}
+
+.search-green {
+    @include makeSearch($g-green-base, $g-yellow-base, 45deg);
+}
+
+.search-purple {
+    @include makeSearch($g-purple-base, $red 80%, 45deg);
+}

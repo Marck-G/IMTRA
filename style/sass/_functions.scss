@@ -1,0 +1,92 @@
+@mixin backg-clip($option) {
+    background-clip: $option;
+    -webkit-background-clip: $option;
+}
+
+/// 
+/// @param {*} $direction 
+/// @param {list} $gradients...
+
+@mixin linear-gradient-text($direction, $gradients...) {
+    background: linear-gradient($direction, $gradients...);
+
+    @include backg-clip(text);
+
+    color: transparent;
+}
+
+/// make a gradient text
+/// @param {*} $type 
+/// @param {list} $colors...
+
+@mixin radial-gradient-text($type, $colors...) {
+    background: radial-gradient($type, $colors...);
+
+    @include backg-clip(text);
+
+    color: transparent;
+}
+
+/// Center a relative object
+/// @param {*} $margin-top [0]
+
+@mixin relative-center($margin-top: 0) {
+    margin: $margin-top auto;
+}
+
+@mixin transform($value) {
+    transform: $value;
+}
+
+/// horizontal absolute center
+/// @param {string} $child
+
+@mixin abs-h-center($child) {
+    position: relative;
+
+    #{$child} {
+        position: absolute;
+        left: 50%;
+
+        @include transform(translate(-50%, 0));
+
+        @content;
+    }
+}
+
+/// vertical absolute center
+/// @param {string} $child
+
+@mixin abs-v-center($child) {
+    position: relative;
+
+    #{$child} {
+        position: absolute;
+        top: 50%;
+
+        @include transform(translate(0, -50%));
+
+        @content;
+    }
+}
+
+/// vertial an horizontal absolute center
+/// @param {string} $child
+
+@mixin abs-center($child) {
+    position: relative;
+
+    #{$child} {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+
+        @include transform(translate(-50%, -50%));
+
+        @content;
+    }
+}
+
+@mixin radious($rad) {
+    border-radius: $rad;
+}

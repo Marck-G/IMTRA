@@ -1,0 +1,162 @@
+.page-title {
+    font: {
+        size: $big-title-size;
+        weight: bolder;
+    };
+    color: transparent !important;
+    word-wrap: break-word;
+    text-align: center;
+
+    @include linear-gradient-text(45deg, #44e 20%, #2fa);
+
+    @media screen and (max-width: $tablet) {
+        font-size: $big-title-size * 0.6;
+    }
+
+    @media screen and (max-width: $phone) {
+        font-size: $big-title-size * 0.4;
+    }
+}
+
+.header {
+    height: 100vh;
+    width: calc(100vw -10px);
+
+    @include abs-center("h1");
+}
+
+*:not(code):not(pre) {
+    font-family: $default-font;
+}
+
+code, pre {
+    font-family: $code-font;
+}
+
+.radial-text-red {
+    @include radial-gradient-text(circle 40vw, $g-red-base 10%, $g-red-acent 100%);
+}
+
+.radial-text-blue {
+    @include radial-gradient-text(circle 40vw, $g-blue-base 10%, $g-blue-acent 100%);
+}
+
+.radial-text-yellow {
+    @include radial-gradient-text(circle 40vw, $g-yellow-base 10%, $g-yellow-acent 100%);
+}
+
+.radial-text-orange {
+    @include radial-gradient-text(circle 40vw, $g-orange-base 10%, $g-orange-acent 100%);
+}
+
+.radial-text-green {
+    @include radial-gradient-text(circle 40vw, $g-green-base 10%, $g-green-acent 100%);
+}
+
+.radial-text-purple {
+    @include radial-gradient-text(circle 40vw, $g-purple-base 10%, $g-purple-acent 100%);
+}
+
+.gradient-text-red {
+    @include linear-gradient-text(20deg, $g-red-base, $g-orange-acent 120%);
+}
+
+.gradient-text-blue {
+    @include linear-gradient-text(20deg, $g-blue-base, $g-green-base 80%);
+}
+
+.gradient-text-green {
+    @include linear-gradient-text(20deg, $g-green-base, $g-blue-acent 60%);
+}
+
+.gradient-text-purple {
+    @include linear-gradient-text(20deg, $g-purple-base, $g-red-acent 60%);
+}
+
+.gradient-text-yellow {
+    @include linear-gradient-text(20deg, $g-yellow-acent, $g-green-acent 50%);
+}
+
+.gradient-text-orange {
+    @include linear-gradient-text(20deg, $g-orange-base, $g-purple-acent 100%);
+}
+
+* {
+    font-size: $base-font-size;
+}
+
+// ########## TITLES ################
+%title {
+    margin-bottom: 50px;
+    transition: all .7s;
+}
+
+h1 {
+    @extend %title;
+
+    font-size: $base-font-size * 4.5;
+
+    @media screen and (max-width: $tablet) {
+        font-size: $base-font-size * 3.3;
+    }
+
+    @media screen and (max-width: $phone) {
+        font-size: $base-font-size * 2;
+    }
+}
+
+h2 {
+    @extend %title;
+
+    font-size: $base-font-size * 3.9;
+
+    @media screen and (max-width: $tablet) {
+        font-size: $base-font-size * 2.9;
+    }
+
+    @media screen and (max-width: $phone) {
+        font-size: $base-font-size * 1.8;
+    }
+}
+
+h3 {
+    @extend %title;
+
+    font-size: $base-font-size * 3.2;
+
+    @media screen and (max-width: $tablet) {
+        font-size: $base-font-size * 2.7;
+    }
+
+    @media screen and (max-width: $phone) {
+        font-size: $base-font-size * 1.6;
+    }
+}
+
+h4 {
+    @extend %title;
+
+    font-size: $base-font-size * 2.6;
+
+    @media screen and (max-width: $tablet) {
+        font-size: $base-font-size * 2.4;
+    }
+
+    @media screen and (max-width: $phone) {
+        font-size: $base-font-size * 1.4;
+    }
+}
+
+h5 {
+    @extend %title;
+
+    font-size: $base-font-size * 2;
+
+    @media screen and (max-width: $tablet) {
+        font-size: $base-font-size * 2.2;
+    }
+
+    @media screen and (max-width: $phone) {
+        font-size: $base-font-size * 1.2;
+    }
+}

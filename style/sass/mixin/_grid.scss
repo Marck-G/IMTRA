@@ -1,0 +1,24 @@
+/// All grid related mixin for the row and table system
+/// @author Marck C. Guzmán <marck.guzman.dev@gmail.com>
+
+/// Make a simple flex box for the row system
+/// @param {*} $direction [row] 
+/// @param {*} $wrap [wrap] 
+/// @param {*} $contentAlign [flex-start] 
+/// @param {*} $itemsAlign [flex-start] 
+/// @param {*} $justify [flex-start] 
+/// @content object styles
+
+@mixin makeFlexBox(
+    $direction: row,
+    $wrap: wrap,
+    $contentAlign: flex-start,
+    $itemsAlign: flex-start,
+    $justify: flex-start
+) {
+    display: flex;
+    align-content: $contentAlign;
+    align-items: $itemsAlign;
+    justify-content: $justify;
+    @content;
+}

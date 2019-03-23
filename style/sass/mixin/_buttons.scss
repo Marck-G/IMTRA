@@ -1,0 +1,22 @@
+// Mixin for buttons
+
+// Butons base styles
+%btn-base {
+    display: inline-block;
+    padding: $btn-pd-tb $btn-pd-rl;
+    text-transform: uppercase;
+    min-width: $btn-min-width;
+    color: $black1;
+    font-size: $base-font-size * 0.8;
+    margin: 10px 10px;
+    cursor: pointer;
+    text-align: center;
+    transition: all .7s;
+    text-decoration: none;
+
+    * {
+        transition: all .7s;
+    }
+
+    font-weight: bold;
+}

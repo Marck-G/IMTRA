@@ -1,16 +1,31 @@
 $white: white;
 $black: black;
-$black1: #333;
+$gray-dark: rgb(147,147,147);
+$gray-light: rgb(235,235,235);
 
 $orange: rgb(255, 178, 34);
 $yellow: rgb(255, 255, 0);
 $red: rgb(240, 38, 38);
 $blue: rgb(65, 129, 224);
+$blue-dark: rgb(50, 52, 211);
 $cian: rgb(71, 194, 243);
 $teal: rgb(55, 228, 170);
 $green: rgb(41, 228, 41);
 $purple: rgb(188, 52, 230);
 $pink: rgb(233, 57, 233);
+
+$theme-color: ( 
+    "white": $white,
+    "black": $black,
+    "lightgray": $gray-light,
+    "darkgray": $gray-dark,
+    "orange": $orange,
+    "yellow": $yellow,
+    "red": $red,
+    "blue": $blue,
+    "darkblue": $blue-dark,
+    
+ );
 
 // ############ GRADIENT ############
 $g-blue-base: rgb(69, 155, 236);

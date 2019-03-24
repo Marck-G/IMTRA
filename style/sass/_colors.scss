@@ -1,38 +1,130 @@
-$white: white;
-$black: black;
-$gray-dark: rgb(147, 147, 147);
-$gray-light: rgb(235, 235, 235);
+// COLORS
+$white: #fff;
+$black: #000;
+$gray: #8C8C8C;
 
-$orange: rgb(255, 178, 34);
-$yellow: rgb(255, 255, 0);
-$red: rgb(240, 38, 38);
-$blue: rgb(65, 129, 224);
-$blue-dark: rgb(50, 52, 211);
-$cian: rgb(71, 194, 243);
-$teal: rgb(55, 228, 170);
-$green: rgb(41, 228, 41);
-$purple: rgb(188, 52, 230);
-$pink: rgb(233, 57, 233);
+// orange
+$orange: #ffb222;
 
-$theme-color: ("white": $white, "black": $black, "lightgray": $gray-light, "darkgray": $gray-dark, "orange": $orange, "yellow": $yellow, "red": $red, "blue": $blue, "darkblue": $blue-dark);
+// yellow
+$yellow: #ff0;
 
-// ############ GRADIENT ############
-$g-blue-base: rgb(69, 155, 236);
-$g-blue-acent: rgb(79, 223, 211);
+// red
+$red: #FB4343;
 
-$g-red-base: rgb(236, 49, 49);
-$g-red-acent: rgb(255, 130, 58);
+// blue
+$blue: #1C9AD9;
 
-$g-green-base: rgb(33, 206, 41);
-$g-green-acent: rgb(213, 255, 98);
+// blue dark
+$blue-dark: #1C5380;
 
-$g-yellow-base: rgb(255, 255, 0);
-$g-yellow-acent: rgb(255, 174, 0);
+// cian
+$cian: #61D6FF;
 
-$g-orange-base: rgb(255, 153, 0);
-$g-orange-acent: rgb(255, 217, 0);
+// teal
+$teal: #37e4aa;
 
-$g-purple-base: rgb(176, 5, 255);
-$g-purple-acent: rgb(255, 47, 238);
+// green
+$green: #29e429;
 
-// ############# CLASSES #############
+// purple
+$purple: #bc34e6;
+
+// pink
+$pink: #e939e9;
+
+// ========================================================================== //
+//                                  GRADIENTS                                 //
+// ========================================================================== //
+
+$g-blue-base: $blue-dark;
+$g-blue-acent: $cian;
+
+$g-red-base: $red;
+$g-red-acent: $orange;
+
+$g-green-base: $green;
+$g-green-acent: $teal;
+
+$g-orange-base: $orange;
+$g-orange-acent: $yellow;
+
+$g-purple-base: $purple;
+$g-purple-acent: $pink;
+
+// END COLORS
+
+$max-tone: 5 !default;
+$tone-step: 6 !default;
+
+$theme-color: ("gray": $gray, "orange": $orange, "yellow": $yellow, "red": $red, "blue": $blue, "darkblue": $blue-dark);
+$gradients: ("blue": ($g-blue-base, $g-blue-acent), "red": ($g-red-base, $g-red-acent), "green": ($g-green-base, $g-green-acent), "orange": ($g-orange-base, $g-orange-acent), "purple": ($g-purple-base, $g-purple-acent));
+
+// ========================================================================== //
+//                                   CLASSES                                  //
+// ========================================================================== //
+
+/* ========================================================================== */
+/*                                 -| TEXT |-                                 */
+/* ========================================================================== */
+
+@each $name, $color in $theme-color {
+    // set the light colors
+    @for $i from $max-tone * -1 to 0 {
+        .text-#{$name}-lighten#{$i} {
+            color: lighten($color: $color, $amount: $i * $tone-step * -1) !important;
+        }
+    }
+
+    // main color
+    .text-#{$name} {
+        color: $color !important;
+    }
+
+    // darken colors
+    @for $i from 1 to $max-tone + 1 {
+        .text-#{$name}-darken-#{$i} {
+            color: darken($color: $color, $amount: $i * $tone-step) !important;
+        }
+    }
+}
+
+.text-white {
+    color: $white !important;
+}
+
+.text-black {
+    color: $black !important;
+}
+
+/* ========================================================================== */
+/*                              -| BACKGROUNDS |-                             */
+/* ========================================================================== */
+@each $name, $color in $theme-color {
+    // set the light colors
+    @for $i from $max-tone * -1 to 0 {
+        .#{$name}-lighten#{$i} {
+            background: lighten($color: $color, $amount: $i * $tone-step * -1) !important;
+        }
+    }
+
+    // main color
+    .#{$name} {
+        background: $color !important;
+    }
+
+    // darken colors
+    @for $i from 1 to $max-tone + 1 {
+        .#{$name}-darken-#{$i} {
+            background: darken($color: $color, $amount: $i * $tone-step) !important;
+        }
+    }
+}
+
+.white {
+    background: $white !important;
+}
+
+.black {
+    background: $black !important;
+}

@@ -3,30 +3,6 @@
     -webkit-background-clip: $option;
 }
 
-/// 
-/// @param {*} $direction 
-/// @param {list} $gradients...
-
-@mixin linear-gradient-text($direction, $gradients...) {
-    background: linear-gradient($direction, $gradients...);
-
-    @include backg-clip(text);
-
-    color: transparent;
-}
-
-/// make a gradient text
-/// @param {*} $type 
-/// @param {list} $colors...
-
-@mixin radial-gradient-text($type, $colors...) {
-    background: radial-gradient($type, $colors...);
-
-    @include backg-clip(text);
-
-    color: transparent;
-}
-
 /// Center a relative object
 /// @param {*} $margin-top [0]
 

@@ -37,7 +37,7 @@ module.exports = (grunt) => {
 
 
     grunt.loadNpmTasks('grunt-contrib-sass');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-uglify-es');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.registerTask('minjs', ['uglify']);

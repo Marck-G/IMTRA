@@ -9,36 +9,33 @@
 /// @param {*} $justify [flex-start] 
 /// @content object styles
 
-@mixin makeFlexBox(
-    $direction: row,
-    $wrap: wrap,
-    $contentAlign: flex-start,
-    $itemsAlign: flex-start,
-    $justify: flex-start
-) {
+@mixin makeFlexBox($direction: row, $wrap: wrap, $contentAlign: flex-start, $itemsAlign: flex-start, $justify: flex-start) {
+    flex-direction: $direction;
+    flex-wrap: $wrap;
     display: flex;
     align-content: $contentAlign;
     align-items: $itemsAlign;
     justify-content: $justify;
+
     @content;
 }
+
 /// Make a simple flex item
 /// @param {*} $totalWidth flex box width
 /// @param {number} $num number of items
 /// @param {*} $margin [0] 
 /// @param {*} $grow [1] 
-/// @param {*} $shrink [1] 
+/// @param {*} $shrink [1]
 
-@mixin makeFlexItem(
-    $totalWidth,
-    $num,
-    $margin:0px,
-    $grow: 1,
-    $shrink:1
-){
+@mixin makeFlexItem($totalWidth, $num, $margin: 0px, $grow: 1, $shrink: 1) {
     flex-grow: $grow;
     flex-shrink: $shrink;
-    margin-left: $margin/2;
-    margin-right: $margin/2;
-    $width: calc( #{$totalWidth} - $margin );    
+    margin-left: $margin / 2;
+    margin-right: $margin / 2;
+
+    $width: calc( #{$totalWidth} - $margin );
+}
+
+@mixin makeCol {
+    @include makeFlexBox(colum);
 }

@@ -1,7 +1,7 @@
 $white: white;
 $black: black;
-$gray-dark: rgb(147,147,147);
-$gray-light: rgb(235,235,235);
+$gray-dark: rgb(147, 147, 147);
+$gray-light: rgb(235, 235, 235);
 
 $orange: rgb(255, 178, 34);
 $yellow: rgb(255, 255, 0);
@@ -14,18 +14,7 @@ $green: rgb(41, 228, 41);
 $purple: rgb(188, 52, 230);
 $pink: rgb(233, 57, 233);
 
-$theme-color: ( 
-    "white": $white,
-    "black": $black,
-    "lightgray": $gray-light,
-    "darkgray": $gray-dark,
-    "orange": $orange,
-    "yellow": $yellow,
-    "red": $red,
-    "blue": $blue,
-    "darkblue": $blue-dark,
-    
- );
+$theme-color: ("white": $white, "black": $black, "lightgray": $gray-light, "darkgray": $gray-dark, "orange": $orange, "yellow": $yellow, "red": $red, "blue": $blue, "darkblue": $blue-dark);
 
 // ############ GRADIENT ############
 $g-blue-base: rgb(69, 155, 236);
@@ -47,98 +36,3 @@ $g-purple-base: rgb(176, 5, 255);
 $g-purple-acent: rgb(255, 47, 238);
 
 // ############# CLASSES #############
-.orange {
-    background: $orange;
-}
-
-.yellow {
-    background: $yellow;
-}
-
-.red {
-    background: $red;
-}
-
-.purple {
-    background: $purple;
-}
-
-.blue {
-    background: $blue;
-}
-
-.cian {
-    background: $cian;
-}
-
-.teal {
-    background: $teal;
-}
-
-.green {
-    background: $green;
-}
-
-.pink {
-    background: $pink;
-}
-
-.black {
-    background: $black;
-}
-
-.dark-gray {
-    background: $black1;
-}
-
-.white {
-    background: $white;
-}
-
-.text-orange {
-    color: $orange;
-}
-
-.text-yellow {
-    color: $yellow;
-}
-
-.text-red {
-    color: $red;
-}
-
-.text-purple {
-    color: $purple;
-}
-
-.text-blue {
-    color: $blue;
-}
-
-.text-cian {
-    color: $cian;
-}
-
-.text-teal {
-    color: $teal;
-}
-
-.text-green {
-    color: $green;
-}
-
-.text-pink {
-    color: $pink;
-}
-
-.text-black {
-    color: $black;
-}
-
-.text-dark-gray {
-    color: $black1;
-}
-
-.text-white {
-    color: $white;
-}

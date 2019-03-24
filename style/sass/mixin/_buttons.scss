@@ -6,7 +6,6 @@
     padding: $btn-pd-tb $btn-pd-rl;
     text-transform: uppercase;
     min-width: $btn-min-width;
-    color: $black1;
     font-size: $base-font-size * 0.8;
     margin: 10px 10px;
     cursor: pointer;
@@ -19,4 +18,74 @@
     }
 
     font-weight: bold;
+}
+
+// ############## FUNCTIONS ##############
+/// Make a simple buton from a template
+/// @param {color} $hoverColor [#444] btn's hover background color
+/// @param {boolean} $borderRadius [false]  if you want a radius btn
+/// @param {boolean} $border [false] if you want to see the btn's border
+/// @param {color} $mainColor [#fff] default background color
+/// @param {list} $borderStyle [solid 1px]
+
+@mixin makeBtn($hoverColor: #444, $borderRadius: false, $border: false, $mainColor: #fff, $borderStyle: solid 1px) {
+    @extend %btn-base;
+
+    background: $mainColor;
+    color: $hoverColor;
+
+    @if $borderRadius {
+        border-radius: 20px;
+    }
+
+    @if $border {
+        border: $borderStyle $hoverColor;
+    }
+    @else {
+        border: none;
+    }
+
+    &:hover {
+        background: $hoverColor;
+        color: $mainColor;
+
+        @content;
+    }
+}
+
+/// 
+/// @param {color} $hoverTxtColor 
+/// @param {boolean} $radius if want a round btn
+/// @param {*} $direction gradient direction
+/// @param {list} $colors... colors of gradient
+
+@mixin makeGradientBtn($hoverTxtColor, $radius, $direction, $colors...) {
+    @include makeBtn(#fff, $radius);
+
+    background: linear-gradient($direction, $colors...) !important;
+    color: white !important;
+
+    &:hover {
+        color: $hoverTxtColor !important;
+        background: transparent !important;
+        transform: scale(1.2);
+    }
+}
+
+/// make a outline btn
+/// btn structure: div>*[class=$interlClass]>*[text]
+/// @param {*} $direction [20deg] gradient direction
+/// @param {string} $internalClass [".btn"] set the internal class of the btn
+/// @param {list} $colors... gradient colors
+
+@mixin makeOutLineGradientBtn($direction: 20deg, $colors...) {
+    @extend %btn-outline-gradient;
+
+    background: linear-gradient($direction, $colors...);
+
+    .btn {
+        * {
+            @include linear-gradient-text($direction, $colors...);
+        }
+    }
 }

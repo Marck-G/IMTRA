@@ -1,12 +1,12 @@
 // ########## FONTS ##########
 $big-title-size: 150px;
 $base-font-size: 1.05em;
-$default-font: Arial;
-$code-font: monospace;
+$default-font: Arial !default;
+$code-font: monospace !default;
 
 // ########## SIZES ##########
 
-$section-width: 100%;
+$section-width: 100% !default;
 $section-padding-pc: 10%;
 $section-padding-tablet: 5%;
 

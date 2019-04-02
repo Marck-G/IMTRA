@@ -53,6 +53,7 @@ class Reader:
 
     def set_image(self, img):
         self.image = img
+        self.data = None;
 
     def get_filter_tag(self, filter_list):
         """:param filter_list list of tags to return

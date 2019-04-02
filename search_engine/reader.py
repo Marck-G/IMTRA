@@ -45,7 +45,6 @@ class Reader:
 
     def get_data(self):
         """
-
         :return: full image exif tags
         """
         if self.data is None:
@@ -55,8 +54,6 @@ class Reader:
     def set_image(self, img):
         self.image = img
 
-    # para seleccinar las etiquetas primero crearemos una lista y luego comprobaremos si
-    # la clave está en esa lista. Para la comprobación podremos utilizar 'in': if var in ('a','b')
     def get_filter_tag(self, filter_list):
         """:param filter_list list of tags to return
         :return map with the requires tags and values
@@ -69,5 +66,23 @@ class Reader:
                 map_out[key] = self.get_data().get(key)
         return map_out
 
+    def key_replace(self, map, apply=False):
+        """
+        Replace the original key of the data map to the passed key
+        :param map: hash map with the original and new keys -> {original_key: new_key}
+        :param apply: if we want to apply the change in the current object
+        :return: the map with the news keys
+        """
+        if map is None:
+            raise NoMapSetError("Need a map with the key to replace")
+        temp_map = {}
+        for key in map:
+            temp_map[map[key]] = self.get_data()[key]
+        # apply change for the object if dev want
+        if apply:
+            self.data = temp_map
+        return temp_map
 
 
+class NoMapSetError(Exception):
+    pass

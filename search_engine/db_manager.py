@@ -49,10 +49,11 @@ class DBManager:
         :return:
         """
         qry = open('create_database.sql', 'r').read()
-        c = self.conn.cursor()
-        c.executescript(qry)
-        c.close()
-        self.conn.commit()
+        with self.conn.cursor() as c:
+            c.executescript(qry)
+            c.close()
+            self.conn.commit()
+        return self
 
     def delete_data_base(self):
         """
@@ -60,10 +61,11 @@ class DBManager:
         :return:
         """
         qry = open('delete_database.sql', 'r').read()
-        c = self.conn.cursor()
-        c.executescript(qry)
-        c.close()
-        self.conn.commit()
+        with self.conn.cursor() as c:
+            c.executescript(qry)
+            c.close()
+            self.conn.commit()
+        return self
 
     def __get_db_columns__(self, table):
         """
@@ -85,6 +87,7 @@ class DBManager:
         :param dic:
         """
         self.__dic__ = dic
+        return self
 
     def __get_db_tables__(self):
         """
@@ -133,6 +136,7 @@ class DBManager:
             self.conn.execute(insert)
         # save al changes
         self.conn.commit()
+        return self
 
     def __log__(self, text):
         """

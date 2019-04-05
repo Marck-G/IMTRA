@@ -32,6 +32,7 @@ class DBManager:
     delete_file = "delete_database.sql"
     __instance__ = None
     __dic__ = None
+    __db__ = {}
 
     def __new__(cls):
         if cls.__instance__ is None:
@@ -55,27 +56,49 @@ class DBManager:
     def set_dic(self , dic):
         self.__dic__ =  dic
 
-    #def add_item(self):
-
-    def __get_db_tables__(self):
-        tab_names = []
-        cur = self.conn.execute("Select * from sqlite_master where type='table'")
-        tab_names = [tab_name[1] for tab_name in cur]
+    def __get_db_tables__( self ):
+        cur = self.conn.execute( "Select * from sqlite_master where type='table'" )
+        tab_names = [ tab_name[ 1 ] for tab_name in cur ]
         return tab_names
 
-    def __get_db_colums__(self,tab_name):
-        col_name = []
-        cur = self.conn.execute("Select * from  {}".format(tab_name))
-        tab_names = [tab_names[0] for tab_names in cur.description]
+    def __get_db_colums__( self , tab_name ):
+        cur = self.conn.execute( "Select * from  {}".format( tab_name ) )
+        tab_names = [ tab_names[ 0 ] for tab_names in cur.description ]
         return tab_names
+
+    def __make_dic__( self ):
+        for table in self.__get_db_tables__( ):
+            self.__db__[ table ] = self.__get_db_colums__( table )
+
+    def add_item( self , dic ):
+        insert_sql = "INSERT INTO {}({}) values({})"
+        arr_cols = [ self.__dic__[ tag ] for tag in dic.keys( ) ]
+        value_dic = { }
+        for i,key in enumerate ( dic.keys( ) ):
+            value_dic[ arr_cols[ i ] ] = dic[ key ]
+        camera_tab = [ ]
+        dici = {}
+        for col in arr_cols:
+            for table in self.__db__.keys():
+                if col in self.__db__[table]:
+                    dici[table].update( { col:value_dic[ col ] } )
+
+        for table in dici:
+            insert = insert_sql.format(table,",".join(table.keys() ),",".join(table.values() ) )
+            self.conn.execute(insert)
+
+        self.conn.commit()
+
+
+
+
+
+
 
 #MAIN
 db_manager = DBManager()
 #db_manager.create_database()
-tab_name = db_manager.__get_db_tables__()
-col_name = db_manager.__get_db_colums__(tab_name[0])
-#print("\n".join(tab_name))
+#db_manager.delete_database()
 
-for table in tab_name:
-    print(table)
-    print([col for col in db_manager.__get_db_colums__( table )])
+
+

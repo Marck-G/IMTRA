@@ -21,6 +21,7 @@
 # SOFTWARE.
 
 import sqlite3
+from _datetime import datetime
 
 
 class DBManager:
@@ -31,6 +32,7 @@ class DBManager:
     conn = sqlite3.connect("DB_INTRA.db")
     create_file = "create_database.sql"
     delete_file = "delete_database.sql"
+    __log_file__ = "../.log"
     __instance__ = None
     __dic__ = None
     __db__ = {}
@@ -132,6 +134,19 @@ class DBManager:
         # save al changes
         self.conn.commit()
 
+    def __log__(self, text):
+        """
+        Create a log file with de date and the text
+        :param text: to include in the log file
+        :return:
+        """
+        # open the file in append mode, the plus is for create the file if not exif
+        with open(self.__log_file__, "a+") as log_file:
+            line = "{}\t{}\n"
+            date = datetime.now()
+            # write in th efile
+            log_file.write(line.format(date,text))
+
 
 # MAIN
 db_manager = DBManager()
@@ -142,6 +157,4 @@ db_manager = DBManager()
 # db_manager.create_database()
 
 print(db_manager.__get_db_columns__("img"))
-for table in tab_name:
-    print(table)
-    print([col for col in db_manager.__get_db_columns__(table)])
+db_manager.__log__("test")

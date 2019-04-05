@@ -13,11 +13,13 @@ def show(data):
     for key in data.keys():
         print("{}: {}".format(key, data.get(key)))
 
+
 r = Reader(img_url)
 # show all data
 print("="*40, "\n", "ALL")
 show(r.get_data())
 # set the filter to show
 print("="*40, "\n", "FILTER")
-filter = ('Image Make', 'EXIF ExposureTime', 'EXIF FNumber', 'EXIF ISOSpeedRatings', 'Image Software')
-show( r.get_filter_tag(filter))
+filter = ('Image Make', 'EXIF ExposureTime', 'EXIF FNumber',
+          'EXIF ISOSpeedRatings', 'Image Software')
+show(r.get_filter_tag(filter))

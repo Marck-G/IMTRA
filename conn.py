@@ -8,7 +8,7 @@ class Test:
     strings = ["make_date", "model", "camera"]
 
     def add_item(self, map):
-        insert_sql = "INSERT INTO tabla({}) values({})"
+        insert_sql = "INSERT INTO {}({}) values({})"
         # recorremos el diccionario introducido y a su vez recuperamos el nombre de
         # la columna que le corresponde segun el diccionario
         ar_cols = [self.dic_col_tag[key] for key in map.keys()]

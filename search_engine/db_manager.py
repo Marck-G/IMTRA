@@ -31,6 +31,7 @@ class DBManager:
     create_file = "create_database.sql"
     delete_file = "delete_database.sql"
     __instance__ = None
+    __dic__ = None
 
     def __new__(cls):
         if cls.__instance__ is None:
@@ -65,8 +66,31 @@ class DBManager:
         columns = [col[0] for col in response.description]
         return columns
 
+    def set_dic(self , dic):
+        self.__dic__ =  dic
+
+    #def add_item(self):
+
+    def __get_db_tables__(self):
+        """
+        :return: all db tables in array
+        """
+        # the query to execute
+        cur = self.conn.execute("Select * from sqlite_master where type='table'")
+        # get the array with the tab names
+        tab_names = [tab_name[1] for tab_name in cur]
+        return tab_names
+
+#MAIN
 db_manager = DBManager()
+#db_manager.create_database()
+tab_name = db_manager.__get_db_tables__()
+col_name = db_manager.__get_db_colums__(tab_name[0])
+#print("\n".join(tab_name))
 
 # db_manager.create_database()
 
 print(db_manager.__get_columns__("img"))
+for table in tab_name:
+    print(table)
+    print([col for col in db_manager.__get_db_colums__( table )])

@@ -22,11 +22,12 @@
 
 # MANAGER
 from .reader import Reader
+from .db_manager import DBManager
 
 
 class SearchEngine:
     __reader__ = Reader("")
-    __db_manager__ = None  # db manager
+    __db_manager__ = DBManager  # db manager
     __filter__ = None  # filter for tags
     __replace_map__ = None  # for replace the tags
     __column_separator__ = ";"

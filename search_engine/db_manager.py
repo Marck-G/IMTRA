@@ -22,14 +22,15 @@
 
 import sqlite3
 from _datetime import datetime
-
+from os import path
 
 class DBManager:
     """
         Class DataBase Manager
     """
     # TODO: set the proyect data estructure
-    conn = sqlite3.connect("DB_INTRA.db")
+    __db_file__ =  "DB_IMTRA.db"
+    conn = sqlite3.connect(__db_file__)
     create_file = "create_database.sql"
     delete_file = "delete_database.sql"
     __log_file__ = "../.log"
@@ -41,6 +42,7 @@ class DBManager:
     def __new__(cls):
         if cls.__instance__ is None:
             cls.__instance__ = object.__new__(cls)
+            cls.__instance__.__db_init__()
             return cls.__instance__
 
     def create_database(self):
@@ -53,6 +55,7 @@ class DBManager:
             c.executescript(qry)
             c.close()
             self.conn.commit()
+            self.__log__('Created the database')
         return self
 
     def delete_data_base(self):
@@ -65,6 +68,7 @@ class DBManager:
             c.executescript(qry)
             c.close()
             self.conn.commit()
+        self.__log__('delete the database')
         return self
 
     def __get_db_columns__(self, table):
@@ -132,6 +136,7 @@ class DBManager:
         for table in dici:
             # create the insert query for each table
             insert = insert_sql.format(table, ",".join(table.keys()), ",".join(table.values()))
+            self.__log__(insert)
             # execute the command
             self.conn.execute(insert)
         # save al changes
@@ -146,10 +151,30 @@ class DBManager:
         """
         # open the file in append mode, the plus is for create the file if not exif
         with open(self.__log_file__, "a+") as log_file:
-            line = "{}\t{}\n"
+            line = "{}\t Search Engine: {}\n"
             date = datetime.now()
             # write in th efile
             log_file.write(line.format(date,text))
+
+    def __exists__(self):
+        """
+        Check if the db exists and have its tables
+        :return: boolean
+        """
+        # check if db file exist
+        exist_file = path.exists(self.__db_file__)
+        if exist_file:
+            if len( self.__get_db_tables__()) != 0:
+                return True
+            else:
+                self.__log__('No tables found')
+        else:
+            self.__log__('Not found db file')
+        return False
+
+    def __db_init__(self):
+        if not self.__exists__():
+            self.create_database()
 
 
 # MAIN

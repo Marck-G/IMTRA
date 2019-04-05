@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2019 MARCK C. GUZMAN
+# Copyright (c) 2019 MARCK C. GUZMAN, UNAI DIAZ DE GARAYO
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -39,6 +39,11 @@ class SearchEngine:
         self.__filter__ = db_manager.getFilter()
 
     def __read__(self, img):
+        """
+        Read the img EXIF Tags
+        :param img: image url
+        :return:
+        """
         if img is None:
             raise NoImageSetError("Image not set for read the EXIF tags. Search Engine Error!")
         # set the image to read

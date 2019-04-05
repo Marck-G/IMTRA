@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2019 MARCK C. GUZMAN
+# Copyright (c) 2019 MARCK C. GUZMAN, UNAI DIAZ DE GARAYO
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -51,6 +51,22 @@ class DBManager:
         c.close()
         self.conn.commit()
 
+    def __get_db_columns__(self, table):
+        """
+
+        :param table: table to index
+        :return: the table columns name in array
+        """
+        # create the sql query for the table
+        sql_query = "select * from {}". format(table)
+        # execute the query and save the response
+        response = self.conn.execute(sql_query)
+        # get the cursor metadata
+        columns = [col[0] for col in response.description]
+        return columns
+
 db_manager = DBManager()
 
-db_manager.create_database()
+# db_manager.create_database()
+
+print(db_manager.__get_columns__("img"))

@@ -27,7 +27,6 @@ from .db_manager import DBManager
 
 class SearchEngine:
     __reader__ = Reader("")
-    __db_manager__ = DBManager  # db manager
     __filter__ = None  # filter for tags
     __replace_map__ = None  # for replace the tags
     __column_separator__ = ";"
@@ -35,7 +34,7 @@ class SearchEngine:
     __replaces_key__ = []
 
     def __init__(self, db_manager):
-        self.__db_manager__ = db_manager
+        self.__db_manager__ = DBManager()
         self.set_replace_map(db_manager.getReplaceMap())
         self.__filter__ = db_manager.getFilter()
 
@@ -56,8 +55,8 @@ class SearchEngine:
             return self.__reader__.get_data()
 
     def __db_store__(self):
-        self.__db_manager__.addItem(self.__reader__.get_data())
-        pass
+        self.__db_manager__.add_item(self.__reader__.get_data())
+
 
     def set_filter(self, fil):
         if fil is None:

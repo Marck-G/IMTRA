@@ -31,11 +31,13 @@ class DBManager:
     # TODO: set the proyect data estructure
     __db_file__ =  "DB_IMTRA.db"
     conn = sqlite3.connect(__db_file__)
-    create_file = "create_database.sql"
-    delete_file = "delete_database.sql"
+    create_file = "se.ceate.db.sql"
+    delete_file = "se.del.db.sql"
     __log_file__ = "../.log"
     __instance__ = None
     __dic__ = None
+    __db_folder__ = "../db_f/"
+    __log_folder__ = "../log/"
     __db__ = {}
 
     # singleton
@@ -45,17 +47,25 @@ class DBManager:
             cls.__instance__.__db_init__()
             return cls.__instance__
 
+    def set_db_file_folder(self,base_dir):
+        self.__db_folder__ = base_dir if str(base_dir).endswith('/') else base_dir + '/'
+        return self
+
+    def set_log_folder(self, base_dir):
+        self.__log_folder__ = base_dir if str(base_dir).endswith('/') else base_dir + '/'
+        return self
+
     def create_database(self):
         """
         Create the database
         :return:
         """
-        qry = open('create_database.sql', 'r').read()
-        with self.conn.cursor() as c:
-            c.executescript(qry)
-            c.close()
-            self.conn.commit()
-            self.__log__('Created the database')
+        qry = open(self.__db_folder__ + self.create_file, 'r').read()
+        c = self.conn.cursor()
+        c.executescript(qry)
+        c.close()
+        self.conn.commit()
+        self.__log__('Created the database')
         return self
 
     def delete_data_base(self):
@@ -63,11 +73,11 @@ class DBManager:
         Delete the database
         :return:
         """
-        qry = open('delete_database.sql', 'r').read()
-        with self.conn.cursor() as c:
-            c.executescript(qry)
-            c.close()
-            self.conn.commit()
+        qry = open(self.__db_folder__ + self.delete_file, 'r').read()
+        c = self.conn.cursor()
+        c.executescript(qry)
+        c.close()
+        self.conn.commit()
         self.__log__('delete the database')
         return self
 
@@ -175,8 +185,45 @@ class DBManager:
     def __db_init__(self):
         if not self.__exists__():
             self.create_database()
+# TODO: finish the method
+    def get_item(self, id):
+        get_sql = "SELECT * FROM {} where id={}"
+        cur = self.conn.cursor()
+        response = cur.execute(get_sql.format("img", id))
+        result = {"img":{}}
+        # create the main table to get the all data
+        for col in response:
+            result["img"][col] = response[col]
+            if str(col).startswith("id_"):
+                # if col is a foreign key we get the table name and iterate it
+                table = str(col).replace("id_")
+                result[table] = {}
+                res = cur.execute(get_sql.format(table, response[col]))
+                for col2 in res:
+                    result[table][col2] = res[col2]
+        place_id = cur.execute("SELECT * FROM gps where lat={} AND log={}".format(result["img"]["lat"], result["img"]["log"]))
+        place = cur.execute("SELECT * FROM place where id={}".format(place_id))
+        result["place"] = {}
+        for col in place:
+            result["place"][col] = place[col]
 
 
+        if response.rowcount == 0:
+            return None
+
+    def get_place(self,*args, latitude, longitude):
+        cur = self.conn.execute('SELECT * FORM place where lat={} AND log={}'.format(latitude,longitude))
+        response = {}
+        for col in cur:
+            response[col] = cur[col]
+
+
+    def exist_item(self, data):
+        img_id = data["id"]
+        cur = self.conn.cursor()
+        img = cur.execute("SELECT * FROM img WHERE id=?", img_id).rowcount
+        cur.close()
+        return img == 0
 # MAIN
 db_manager = DBManager()
 # db_manager.create_database()
@@ -184,6 +231,19 @@ db_manager = DBManager()
 
 
 # db_manager.create_database()
+db_manager.__make_dic__()
+print(db_manager.__db__)
+db_manager.set_dic({
+    "date": "taken_date",
+    "ev": "ev",
+    "f": "f_number",
+    "iso": "iso",
+    "velocidad": "speed"
+})
 
-print(db_manager.__get_db_columns__("img"))
-db_manager.__log__("test")
+db_manager.add_item({
+    "date": '20/04/2019',
+    "ev": '20',
+    "f": '4.3',
+    "velocidad": "1/250"
+})

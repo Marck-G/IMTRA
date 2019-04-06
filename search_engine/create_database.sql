@@ -24,11 +24,11 @@ CREATE TABLE lens(
 
 -- CREATE TABLE CAM_LEN
 CREATE TABLE cam_len(
-    id_cam       INTEGER   NOT NULL , -- Primary Key
-    id_len       INTEGER   NOT NULL , -- Primary Key
-    PRIMARY KEY ( id_cam,id_len )   ,
-    FOREIGN KEY ( id_cam )   REFERENCES camera( id ),
-    FOREIGN KEY ( id_len )   REFERENCES lens( id )
+    id_camera    INTEGER   NOT NULL , -- Primary Key
+    id_lens      INTEGER   NOT NULL , -- Primary Key
+    PRIMARY KEY ( id_camera,id_lens )   ,
+    FOREIGN KEY ( id_camera )   REFERENCES camera( id ),
+    FOREIGN KEY ( id_lens )   REFERENCES lens( id )
 );
 
 -- CREATE TABLE GPS

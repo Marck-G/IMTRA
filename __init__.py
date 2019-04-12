@@ -13,7 +13,8 @@ def show(data):
     for key in data.keys():
         print("{}: {}".format(key, data.get(key)))
 
-
+bd = DBManager()
+bd.set_db_file_folder('./search_engine')
 r = Reader(img_url)
 # show all data
 print("="*40, "\n", "ALL")

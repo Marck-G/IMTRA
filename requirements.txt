@@ -1,3 +1,5 @@
+exifread
+Crypto
 bottle==0.12.16
 bottle-websocket==0.2.9
 certifi==2019.3.9

@@ -33,7 +33,7 @@ class SearchEngine:
     __value_separator__ = ":"
     __replaces_key__ = []
 
-    def __init__(self, db_manager):
+    def __init__(self):
         self.__db_manager__ = DBManager()
         self.set_replace_map(db_manager.getReplaceMap())
         self.__filter__ = db_manager.getFilter()
@@ -46,6 +46,7 @@ class SearchEngine:
         """
         if img is None:
             raise NoImageSetError("Image not set for read the EXIF tags. Search Engine Error!")
+
         # set the image to read
         self.__reader__.set_image(img)
         if self.__filter__ is not None:

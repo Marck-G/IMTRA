@@ -186,31 +186,6 @@ class DBManager:
     def __db_init__(self):
         if not self.__exists__():
             self.create_database()
-# TODO: finish the method
-
-    def get_item(self, id):
-        get_sql = "SELECT * FROM {} where id={}"
-        cur = self.conn.cursor()
-        response = cur.execute(get_sql.format("img", id))
-        result = {"img":{}}
-        # create the main table to get the all data
-        for col in response:
-            result["img"][col] = response[col]
-            if str(col).startswith("id_"):
-                # if col is a foreign key we get the table name and iterate it
-                table = str(col).replace("id_")
-                result[table] = {}
-                res = cur.execute(get_sql.format(table, response[col]))
-                for col2 in res:
-                    result[table][col2] = res[col2]
-        place_id = cur.execute("SELECT * FROM gps where lat={} AND log={}".format(result["img"]["lat"], result["img"]["log"]))
-        place = cur.execute("SELECT * FROM place where id={}".format(place_id))
-        result["place"] = {}
-        for col in place:
-            result["place"][col] = place[col]
-
-        if response.rowcount == 0:
-            return None
 
     def get_gps(self,*args, latitude, longitude):
         cur = self.conn.execute('SELECT * FROM gps where lat={} AND log={}'.format(latitude,longitude))
@@ -218,32 +193,32 @@ class DBManager:
         for col in cur:
             response[col] = cur[col]
 
-    def get_lens(self, *args, id ):
-        cur = self.conn.execute('SELECT * FROM lens where {} like "*{}*" '.format(id))
+    def get_lens(self, *args, data ):
+        cur = self.conn.execute('SELECT * FROM lens where {} like "*{}*" '.format(data))
         response = {}
         for col in cur:
             response[col] = cur[col]
 
-    def get_place(self, *args, id ):
-        cur = self.conn.execute('SELECT * FROM place where {} like "*{}*" '.format(id))
+    def get_place(self, *args, data ):
+        cur = self.conn.execute('SELECT * FROM place where {} like "*{}*" '.format(data))
         response = {}
         for col in cur:
             response[col] = cur[col]
 
-    def get_camera(self, *args, id ):
-        cur = self.conn.execute('SELECT * FROM camera where {} like "*{}*" '.format(id))
+    def get_camera(self, *args, data ):
+        cur = self.conn.execute('SELECT * FROM camera where {} like "*{}*" '.format(data))
         response = {}
         for col in cur:
             response[col] = cur[col]
 
-    def get_img(self, *args, id ):
-        cur = self.conn.execute('SELECT * FROM img where {} like "*{}*" '.format(id))
+    def get_img(self, *args, data ):
+        cur = self.conn.execute('SELECT * FROM img where {} like "*{}*" '.format(data))
         response = {}
         for col in cur:
             response[col] = cur[col]
 
-    def get_img_studio(self, *args, id):
-        cur = self.conn.execute('SELECT * FROM img_studio where {} like "*{}*" '.format(id))
+    def get_img_studio(self, *args, data):
+        cur = self.conn.execute('SELECT * FROM img_studio where {} like "*{}*" '.format(data))
         response = {}
         for col in cur:
             response[col] = cur[col]
@@ -257,26 +232,3 @@ class DBManager:
 
 # MAIN
 
-
-db_manager = DBManager()
-# db_manager.create_database()
-# db_manager.delete_database()
-
-
-# db_manager.create_database()
-db_manager.__make_dic__()
-print(db_manager.__db__)
-db_manager.set_dic({
-    "date": "taken_date",
-    "ev": "ev",
-    "f": "f_number",
-    "iso": "iso",
-    "velocidad": "speed"
-})
-
-db_manager.add_item({
-    "date": '20/04/2019',
-    "ev": '20',
-    "f": '4.3',
-    "velocidad": "1/250"
-})

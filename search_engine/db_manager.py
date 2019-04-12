@@ -24,6 +24,7 @@ import sqlite3
 from _datetime import datetime
 from os import path
 
+
 class DBManager:
     """
         Class DataBase Manager
@@ -186,6 +187,7 @@ class DBManager:
         if not self.__exists__():
             self.create_database()
 # TODO: finish the method
+
     def get_item(self, id):
         get_sql = "SELECT * FROM {} where id={}"
         cur = self.conn.cursor()
@@ -207,16 +209,44 @@ class DBManager:
         for col in place:
             result["place"][col] = place[col]
 
-
         if response.rowcount == 0:
             return None
 
-    def get_place(self,*args, latitude, longitude):
-        cur = self.conn.execute('SELECT * FORM place where lat={} AND log={}'.format(latitude,longitude))
+    def get_gps(self,*args, latitude, longitude):
+        cur = self.conn.execute('SELECT * FROM gps where lat={} AND log={}'.format(latitude,longitude))
         response = {}
         for col in cur:
             response[col] = cur[col]
 
+    def get_lens(self, *args, id ):
+        cur = self.conn.execute('SELECT * FROM lens where {} like "*{}*" '.format(id))
+        response = {}
+        for col in cur:
+            response[col] = cur[col]
+
+    def get_place(self, *args, id ):
+        cur = self.conn.execute('SELECT * FROM place where {} like "*{}*" '.format(id))
+        response = {}
+        for col in cur:
+            response[col] = cur[col]
+
+    def get_camera(self, *args, id ):
+        cur = self.conn.execute('SELECT * FROM camera where {} like "*{}*" '.format(id))
+        response = {}
+        for col in cur:
+            response[col] = cur[col]
+
+    def get_img(self, *args, id ):
+        cur = self.conn.execute('SELECT * FROM img where {} like "*{}*" '.format(id))
+        response = {}
+        for col in cur:
+            response[col] = cur[col]
+
+    def get_img_studio(self, *args, id):
+        cur = self.conn.execute('SELECT * FROM img_studio where {} like "*{}*" '.format(id))
+        response = {}
+        for col in cur:
+            response[col] = cur[col]
 
     def exist_item(self, data):
         img_id = data["id"]
@@ -224,7 +254,10 @@ class DBManager:
         img = cur.execute("SELECT * FROM img WHERE id=?", img_id).rowcount
         cur.close()
         return img == 0
+
 # MAIN
+
+
 db_manager = DBManager()
 # db_manager.create_database()
 # db_manager.delete_database()

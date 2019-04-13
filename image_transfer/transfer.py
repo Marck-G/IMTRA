@@ -33,6 +33,10 @@ class Transfer:
         return lines
 
     def list_dir(self):
+        """
+        List the base dir attending the extension that are allowed
+        :return: list with files' path
+        """
         list = []
         for r, d, f in os.walk(self.__base_dir__):
             for file in f:
@@ -40,6 +44,4 @@ class Transfer:
                     if file.endswith(ext):
                         list.append(os.path.join(r,file))
         return list
-p = Transfer()
-p.set_base_dir('/home/marck/Downloads')
-print(p.list_dir())
+

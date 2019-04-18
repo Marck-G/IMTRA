@@ -32,20 +32,19 @@ class DBManager:
     # TODO: set the proyect data estructure
     __db_file__ =  "DB_IMTRA.db"
     conn = sqlite3.connect(__db_file__)
-    create_file = "se.ceate.db.sql"
+    create_file = "se.create.db.sql"
     delete_file = "se.del.db.sql"
     __log_file__ = "../.log"
     __instance__ = None
     __dic__ = None
-    __db_folder__ = "../db_f/"
-    __log_folder__ = "../log/"
+    __db_folder__ = "./"
+    __log_folder__ = "./"
     __db__ = {}
 
     # singleton
     def __new__(cls):
         if cls.__instance__ is None:
             cls.__instance__ = object.__new__(cls)
-            cls.__instance__.__db_init__()
             return cls.__instance__
 
     def set_db_file_folder(self,base_dir):

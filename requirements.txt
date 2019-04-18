@@ -1,3 +1,4 @@
+python-dateutil
 exifread
 Crypto
 bottle==0.12.16

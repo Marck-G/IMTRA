@@ -1,0 +1,12 @@
+# APP info
+appName: IMTRA
+# description: 
+appLang: en
+
+# copyright
+copy: IMTRA  &copy; 2019
+
+#server info
+port: 9000
+# file to exclude of the build
+exclude: ['style', LICENSE, .gitignore, README.md]

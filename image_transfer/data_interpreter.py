@@ -13,7 +13,7 @@ def dir(d, format = 'yyyy/MM/dd-MM-yy'):
     if ':' in format: split_regex = ':'
     split = format.split(split_regex)
     # parse the date
-    date = parse(d)
+    date = parse(str(d))
     string = ''
     for el in split:
         # split any subformat

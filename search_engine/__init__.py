@@ -79,7 +79,7 @@ class SearchEngine:
         for key in map:
             self.__replaces_key__.append(map[key])
 
-    def search(self, data, *search_map):
+    def search(self, data, search_map = None):
         """
 
         :param data: search in one line string

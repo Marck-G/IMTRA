@@ -229,5 +229,14 @@ class DBManager:
         cur.close()
         return img == 0
 
-# MAIN
+    def get_item(self, *args, where_map ):
+        if where_map is None:
+            self.__log__('No where condition')
+            raise ConditionsNotFoundError('No where condition to get_item')
+
+
+
+
+class ConditionsNotFoundError(Exception):
+    pass
 

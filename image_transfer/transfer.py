@@ -1,4 +1,5 @@
 import os
+from search_engine import reader
 class Transfer:
     __base_dir__ = ''
     __dest_dir__ = ''
@@ -45,3 +46,13 @@ class Transfer:
                         list.append(os.path.join(r,file))
         return list
 
+    def __read_date__(self, img):
+        rdr = reader.Reader()
+        rdr.set_image(img)
+        result = rdr.get_filter_tag(['Image DateTime', 'EXIF DateTimeOriginal'])
+        if result is None or len(result) == 0:
+            pass
+        if len(result) == 2:
+            return result['EXIF DateTimeOriginal']
+        else:
+            return result['Image DateTime']

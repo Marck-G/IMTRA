@@ -120,7 +120,7 @@ class Transfer:
                     _output.write(_input.read(size))
 
     async def transfer_all(self):
-        for i,image in enumerate(self.list_dir()):
+        for i, image in enumerate(self.list_dir()):
             try:
                 self.transfer(image)
                 yield {"image": image,
@@ -133,10 +133,8 @@ class Transfer:
                        "number": i,
                        "total": self.get_size(),
                        "error": {
-                           "name": Exception.__name__,
-                           "cause": Exception.__cause__
-                        }
-                        }
+                                "name": Exception.__name__,
+                                "cause": Exception.__cause__}}
 
     class BaseErrorNotFoundError (Exception):
         def __init__(self, msg, log):
@@ -147,5 +145,3 @@ class Transfer:
         def __init__(self, msg, log):
             Exception.__init__(msg)
             log.log("{} {}".format(self.__class__.__name__, msg))
-
-

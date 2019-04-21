@@ -2,3 +2,5 @@ style/
 venv/
 .idea/
 __pycache__/
+.vscode/
+.*/

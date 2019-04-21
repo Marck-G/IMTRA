@@ -65,6 +65,8 @@ class Reader:
         for key in self.get_data():
             if key in filter_list:
                 map_out[key] = self.get_data().get(key)
+        if len(map_out.keys()) == 0:
+            return None
         return map_out
 
     def key_replace(self, map, apply=False):

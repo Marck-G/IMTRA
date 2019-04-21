@@ -23,6 +23,7 @@
 import sqlite3
 from _datetime import datetime
 from os import path
+from utils.logger import Logger
 
 
 class DBManager:
@@ -157,14 +158,8 @@ class DBManager:
         """
         Create a log file with de date and the text
         :param text: to include in the log file
-        :return:
         """
-        # open the file in append mode, the plus is for create the file if not exif
-        with open(self.__log_file__, "a+") as log_file:
-            line = "{}\t Search Engine: {}\n"
-            date = datetime.now()
-            # write in th efile
-            log_file.write(line.format(date,text))
+        Logger(prefix=' Search Engine').log(text)
 
     def __exists__(self):
         """

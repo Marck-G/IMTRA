@@ -6,7 +6,7 @@ class Logger:
     Generate the log file with all the app info
     """
     __instance__ = None
-    output_file = None
+    output_file = '.log'
     prefix = None
 
     # SINGLETON

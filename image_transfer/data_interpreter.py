@@ -1,5 +1,5 @@
 import datetime
-from dateutil.parser import parse
+
 
 
 def dir(d, format = 'yyyy/MM/dd-MM-yy'):
@@ -13,7 +13,7 @@ def dir(d, format = 'yyyy/MM/dd-MM-yy'):
     if ':' in format: split_regex = ':'
     split = format.split(split_regex)
     # parse the date
-    date = parse(str(d))
+    date = datetime.datetime.strptime(str(d), "%Y:%m:%d %H:%M:%S")
     string = ''
     for el in split:
         # split any subformat

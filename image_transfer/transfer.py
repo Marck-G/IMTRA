@@ -23,9 +23,9 @@ class Transfer:
     def set_base_dir(self, dir):
         self.__base_dir__ = dir
         # if dir not exists raise an error
-        if not self.__exists_img__(dir):
-            Logger(prefix=self.__name__).log('Dir {} not found'.format(dir))
-            raise FileNotFoundError('Dir {} not found'.format(dir))
+        if not os.path.exists(dir):
+            Logger(prefix=self.__name__).log('Dir {} not found'.format(str(dir)))
+            raise FileNotFoundError('Dir {} not found'.format(str(dir)))
         self.__imgs__ = None  # reset the file list
         self.duplicated_images = []  # reset the duplicate images
         return self
@@ -64,8 +64,9 @@ class Transfer:
             for r, d, f in os.walk(self.__base_dir__):
                 for file in f:
                     for ext in self.read_extension():
-                        if file.endswith(ext):
+                        if file.lower().endswith(ext.lower()):
                             list.append(os.path.join(r,file))
+            self.__imgs__ = list
             return list
 
     def __read_date__(self, img):

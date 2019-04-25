@@ -79,17 +79,15 @@ class SearchEngine:
         for key in map:
             self.__replaces_key__.append(map[key])
 
-    def search(self, data, search_map = None):
+    def search(self, data):
+        # segun la informacion que pase se pasa a una tabla u otra, hay que hacer un switch case
+        # para los datos introducidos
         """
 
         :param data: search in one line string
-        :param search_map: map with the search information
         :return: list with the images referenced id
         """
-        # if there is a search map whe pass the argument to the manager and return the
-        # search result
-        if search_map is not None:
-            return self.__db_manager__.getItem(where_map=search_map)
+
         data_split = str(data).split(self.__column_separator__)
         search_data = {}
         # generate the search map

@@ -188,31 +188,31 @@ class DBManager:
             response[col] = cur[col]
 
     def get_lens(self, *args, data ):
-        cur = self.conn.execute('SELECT * FROM lens where {} like "*{}*" '.format(data))
+        cur = self.conn.execute('SELECT * FROM lens where {} like "*{}*" '.format(data['col'], data['value']))
         response = {}
         for col in cur:
             response[col] = cur[col]
 
     def get_place(self, *args, data ):
-        cur = self.conn.execute('SELECT * FROM place where {} like "*{}*" '.format(data))
+        cur = self.conn.execute('SELECT * FROM place where {} like "*{}*" '.format(data['col'], data['value']))
         response = {}
         for col in cur:
             response[col] = cur[col]
 
     def get_camera(self, *args, data ):
-        cur = self.conn.execute('SELECT * FROM camera where {} like "*{}*" '.format(data))
+        cur = self.conn.execute('SELECT * FROM camera where {} like "*{}*" '.format(data['col'], data['value']))
         response = {}
         for col in cur:
             response[col] = cur[col]
 
     def get_img(self, *args, data ):
-        cur = self.conn.execute('SELECT * FROM img where {} like "*{}*" '.format(data))
+        cur = self.conn.execute('SELECT * FROM img where {} like "*{}*" '.format(data['col'], data['value']))
         response = {}
         for col in cur:
             response[col] = cur[col]
 
     def get_img_studio(self, *args, data):
-        cur = self.conn.execute('SELECT * FROM img_studio where {} like "*{}*" '.format(data))
+        cur = self.conn.execute('SELECT * FROM img_studio where {} like "*{}*" '.format(data['col'], data['value']))
         response = {}
         for col in cur:
             response[col] = cur[col]
@@ -224,10 +224,7 @@ class DBManager:
         cur.close()
         return img == 0
 
-    def get_item(self, *args, where_map ):
-        if where_map is None:
-            self.__log__('No where condition')
-            raise ConditionsNotFoundError('No where condition to get_item')
+
 
 
 

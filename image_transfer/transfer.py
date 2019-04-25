@@ -70,6 +70,11 @@ class Transfer:
             return list
 
     def __read_date__(self, img):
+        """
+        Search in image metadata data and if there not found nothing read the file creation date
+        :param img: to read the date
+        :return: the image date
+        """
         rdr = reader.Reader(img)
         result = rdr.get_filter_tag(['Image DateTime', 'EXIF DateTimeOriginal'])
         if result is None or len(result.keys()) == 0:
@@ -83,6 +88,12 @@ class Transfer:
 
     def __exists_img__(self, img):
         return os.path.exists(img)
+
+    def hasDuplicates(self):
+        return self.duplicated_images is not None and len(self.duplicated_images) != 0
+
+    def get_duplicates(self):
+        return self.duplicated_images
 
     def get_size(self):
         """
@@ -120,22 +131,20 @@ class Transfer:
                     size = os.path.getsize(image)
                     _output.write(_input.read(size))
 
-    async def transfer_all(self):
+    def transfer_all(self, callback):
         for i, image in enumerate(self.list_dir()):
             try:
                 self.transfer(image)
-                yield {"image": image,
+                callback( {"image": image,
                        "status": "ok",
-                       "number": i,
-                       "total": self.get_size()}
-            except Exception:
-                yield {"image": image,
+                       "number": i + 1,
+                       "total": self.get_size()})
+            except Exception as e:
+                callback(  {"image": image,
                        "status": "error",
-                       "number": i,
+                       "number": i + 1,
                        "total": self.get_size(),
-                       "error": {
-                                "name": Exception.__name__,
-                                "cause": Exception.__cause__}}
+                       "error": e})
 
     class BaseErrorNotFoundError (Exception):
         def __init__(self, msg, log):

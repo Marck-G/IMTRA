@@ -2,7 +2,7 @@ import datetime
 
 
 
-def dir(d, format = 'yyyy/MM/dd-MM-yy'):
+def dir(d, format = 'yyyy/MM/dd-MM-yy', sys_date=False):
     """
     Generate a path string with the date and the format
     :param d: date to make the tree dir
@@ -13,7 +13,8 @@ def dir(d, format = 'yyyy/MM/dd-MM-yy'):
     if ':' in format: split_regex = ':'
     split = format.split(split_regex)
     # parse the date
-    date = datetime.datetime.strptime(str(d), "%Y:%m:%d %H:%M:%S")
+    date = datetime.datetime.strptime(str(d), "%Y:%m:%d %H:%M:%S") \
+        if str(d).index('.') == -1 else datetime.datetime.strptime(str(d), "%Y-%m-%d %H:%M:%S.%f")
     string = ''
     for el in split:
         # split any subformat

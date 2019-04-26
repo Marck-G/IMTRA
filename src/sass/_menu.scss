@@ -1,0 +1,52 @@
+@import 'mixins/suffix';
+.left-menu{
+    width: $menu-width;
+    background: $menu-background;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    font-size: $font-base-size;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @include suffix(box-shadow, 2pt 0 5pt rgba(#000, 0.3));
+    ul{
+        list-style: none;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        li a{
+            color: $color-primary-0;
+            display: block;
+            width: 90%;
+            padding: 5%;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: all .7s;
+
+            & > *[class*='fa-'] {
+                margin-right: 20pt;
+                font-size: 2em;
+                position: relative;
+                top: 20pt;
+                transform: translate(0, -50%);
+            }
+
+            &:hover{
+                @extend .gradient-green;
+                color:#000;
+                font-weight: bolder;
+                width: 105%;
+                @include suffix(box-shadow, 2pt 0 5pt rgba(#000, 0.3));
+            }
+        }
+        .active{
+            @extend .gradient-green;
+            color: $menu-background;
+            font-weight: bolder;
+        }
+    }
+}

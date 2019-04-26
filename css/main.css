@@ -1,77 +1,489 @@
-/*
-Error: Invalid CSS after "...secondary-2-0: ": expected expression (e.g. 1px, bold), was "# ;	// Main Sec..."
-        on line 14 of src/sass/_colors.scss
-        from line 1 of src/sass/main.scss
+@font-face {
+  font-family: Satisfy;
+  src: url(../resources/Satisfy/Satisfy-Regular.ttf);
+  font-weight: normal;
+}
+@font-face {
+  font-family: Mukta;
+  src: url(../resources/Mukta/Mukta-Regular.ttf);
+  font-weight: normal;
+}
+@font-face {
+  font-family: Mukta;
+  src: url(../resources/Mukta/Mukta-Bold.ttf);
+  font-weight: bold;
+}
+@font-face {
+  font-family: Mukta;
+  src: url(../resources/Mukta/Mukta-Medium.ttf);
+  font-weight: 500;
+}
+.base {
+  background: #E1FA37;
+}
 
-9: $color-secondary-1-1: #91F7AC;
-10: $color-secondary-1-2: #60E784;
-11: $color-secondary-1-3: #02B131;
-12: $color-secondary-1-4: #086A21;
-13: 
-14: $color-secondary-2-0: # ;	// Main Secondary color (2) *\/
-15: $color-secondary-2-1: #FFA296;
-16: $color-secondary-2-2: #FF7C6B;
-17: $color-secondary-2-3: #ED1E03;
-18: $color-secondary-2-4: #8E190A;
-19: 
+.text-base {
+  color: #E1FA37;
+}
 
-Backtrace:
-src/sass/_colors.scss:14
-src/sass/main.scss:1
-/usr/lib/ruby/vendor_ruby/sass/scss/parser.rb:1207:in `expected'
-/usr/lib/ruby/vendor_ruby/sass/script/lexer.rb:229:in `expected!'
-/usr/lib/ruby/vendor_ruby/sass/script/parser.rb:710:in `assert_expr'
-/usr/lib/ruby/vendor_ruby/sass/script/parser.rb:75:in `parse'
-/usr/lib/ruby/vendor_ruby/sass/scss/parser.rb:1063:in `sass_script'
-/usr/lib/ruby/vendor_ruby/sass/scss/parser.rb:630:in `variable'
-/usr/lib/ruby/vendor_ruby/sass/scss/parser.rb:684:in `block_child'
-/usr/lib/ruby/vendor_ruby/sass/scss/parser.rb:677:in `block_contents'
-/usr/lib/ruby/vendor_ruby/sass/scss/parser.rb:125:in `stylesheet'
-/usr/lib/ruby/vendor_ruby/sass/scss/parser.rb:41:in `parse'
-/usr/lib/ruby/vendor_ruby/sass/engine.rb:406:in `_to_tree'
-/usr/lib/ruby/vendor_ruby/sass/engine.rb:312:in `to_tree'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:326:in `block in visit_import'
-/usr/lib/ruby/vendor_ruby/sass/stack.rb:88:in `block in with_import'
-/usr/lib/ruby/vendor_ruby/sass/stack.rb:115:in `with_frame'
-/usr/lib/ruby/vendor_ruby/sass/stack.rb:88:in `with_import'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:325:in `visit_import'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:36:in `visit'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:160:in `block in visit'
-/usr/lib/ruby/vendor_ruby/sass/stack.rb:79:in `block in with_base'
-/usr/lib/ruby/vendor_ruby/sass/stack.rb:115:in `with_frame'
-/usr/lib/ruby/vendor_ruby/sass/stack.rb:79:in `with_base'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:160:in `visit'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:52:in `block in visit_children'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:52:in `map'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:52:in `visit_children'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:169:in `block in visit_children'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:181:in `with_environment'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:168:in `visit_children'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:36:in `block in visit'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:188:in `visit_root'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:36:in `visit'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:159:in `visit'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:8:in `visit'
-/usr/lib/ruby/vendor_ruby/sass/tree/root_node.rb:36:in `css_tree'
-/usr/lib/ruby/vendor_ruby/sass/tree/root_node.rb:29:in `render_with_sourcemap'
-/usr/lib/ruby/vendor_ruby/sass/engine.rb:381:in `_render_with_sourcemap'
-/usr/lib/ruby/vendor_ruby/sass/engine.rb:298:in `render_with_sourcemap'
-/usr/lib/ruby/vendor_ruby/sass/plugin/compiler.rb:492:in `update_stylesheet'
-/usr/lib/ruby/vendor_ruby/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
-/usr/lib/ruby/vendor_ruby/sass/plugin/compiler.rb:209:in `each'
-/usr/lib/ruby/vendor_ruby/sass/plugin/compiler.rb:209:in `update_stylesheets'
-/usr/lib/ruby/vendor_ruby/sass/plugin/compiler.rb:473:in `on_file_changed'
-/usr/lib/ruby/vendor_ruby/sass/plugin/compiler.rb:331:in `block in watch'
-/usr/lib/ruby/vendor_ruby/listen/event/config.rb:23:in `call'
-/usr/lib/ruby/vendor_ruby/listen/event/processor.rb:115:in `_process_changes'
-/usr/lib/ruby/vendor_ruby/listen/event/processor.rb:19:in `block in loop_for'
-/usr/lib/ruby/vendor_ruby/listen/event/processor.rb:15:in `loop'
-/usr/lib/ruby/vendor_ruby/listen/event/processor.rb:15:in `loop_for'
-/usr/lib/ruby/vendor_ruby/listen/event/loop.rb:84:in `_wait_for_changes'
-/usr/lib/ruby/vendor_ruby/listen/event/loop.rb:42:in `block in setup'
-/usr/lib/ruby/vendor_ruby/listen/internals/thread_pool.rb:6:in `block in add'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Error: Invalid CSS after \"...secondary-2-0: \": expected expression (e.g. 1px, bold), was \"# ;	// Main Sec...\"\A         on line 14 of src/sass/_colors.scss\A         from line 1 of src/sass/main.scss\A \A 9: $color-secondary-1-1: #91F7AC;\A 10: $color-secondary-1-2: #60E784;\A 11: $color-secondary-1-3: #02B131;\A 12: $color-secondary-1-4: #086A21;\A 13: \A 14: $color-secondary-2-0: # ;	// Main Secondary color (2) */\A 15: $color-secondary-2-1: #FFA296;\A 16: $color-secondary-2-2: #FF7C6B;\A 17: $color-secondary-2-3: #ED1E03;\A 18: $color-secondary-2-4: #8E190A;\A 19: "; }
+.placeholder-base::placeholder {
+  color: #E1FA37;
+}
+
+.base-1 {
+  background: #F1FE95;
+}
+
+.text-base-1 {
+  color: #F1FE95;
+}
+
+.placeholder-base-1::placeholder {
+  color: #F1FE95;
+}
+
+.base-2 {
+  background: #EAFD6A;
+}
+
+.text-base-2 {
+  color: #EAFD6A;
+}
+
+.placeholder-base-2::placeholder {
+  color: #EAFD6A;
+}
+
+.base-3 {
+  background: #CAE703;
+}
+
+.text-base-3 {
+  color: #CAE703;
+}
+
+.placeholder-base-3::placeholder {
+  color: #CAE703;
+}
+
+.base-4 {
+  background: #798A0A;
+}
+
+.text-base-4 {
+  color: #798A0A;
+}
+
+.placeholder-base-4::placeholder {
+  color: #798A0A;
+}
+
+.secondary {
+  background: #2ED259;
+}
+
+.text-secondary {
+  color: #2ED259;
+}
+
+.placeholder-secondary::placeholder {
+  color: #2ED259;
+}
+
+.secondary-1 {
+  background: #91F7AC;
+}
+
+.text-secondary-1 {
+  color: #91F7AC;
+}
+
+.placeholder-secondary-1::placeholder {
+  color: #91F7AC;
+}
+
+.secondary-2 {
+  background: #60E784;
+}
+
+.text-secondary-2 {
+  color: #60E784;
+}
+
+.placeholder-secondary-2::placeholder {
+  color: #60E784;
+}
+
+.secondary-3 {
+  background: #02B131;
+}
+
+.text-secondary-3 {
+  color: #02B131;
+}
+
+.placeholder-secondary-3::placeholder {
+  color: #02B131;
+}
+
+.secondary-4 {
+  background: #086A21;
+}
+
+.text-secondary-4 {
+  color: #086A21;
+}
+
+.placeholder-secondary-4::placeholder {
+  color: #086A21;
+}
+
+.alter {
+  background: #FF4F38;
+}
+
+.text-alter {
+  color: #FF4F38;
+}
+
+.placeholder-alter::placeholder {
+  color: #FF4F38;
+}
+
+.alter-1 {
+  background: #FFA296;
+}
+
+.text-alter-1 {
+  color: #FFA296;
+}
+
+.placeholder-alter-1::placeholder {
+  color: #FFA296;
+}
+
+.alter-2 {
+  background: #FF7C6B;
+}
+
+.text-alter-2 {
+  color: #FF7C6B;
+}
+
+.placeholder-alter-2::placeholder {
+  color: #FF7C6B;
+}
+
+.alter-3 {
+  background: #ED1E03;
+}
+
+.text-alter-3 {
+  color: #ED1E03;
+}
+
+.placeholder-alter-3::placeholder {
+  color: #ED1E03;
+}
+
+.alter-4 {
+  background: #8E190A;
+}
+
+.text-alter-4 {
+  color: #8E190A;
+}
+
+.placeholder-alter-4::placeholder {
+  color: #8E190A;
+}
+
+.white {
+  background: #f4f4f4;
+}
+
+.text-white {
+  color: #f4f4f4;
+}
+
+.placeholder-white::placeholder {
+  color: #f4f4f4;
+}
+
+.black {
+  background: #000000;
+}
+
+.text-black {
+  color: #000000;
+}
+
+.placeholder-black::placeholder {
+  color: #000000;
+}
+
+.acent {
+  background: #B02DC2;
+}
+
+.text-acent {
+  color: #B02DC2;
+}
+
+.placeholder-acent::placeholder {
+  color: #B02DC2;
+}
+
+.acent-1 {
+  background: #E891F4;
+}
+
+.text-acent-1 {
+  color: #E891F4;
+}
+
+.placeholder-acent-1::placeholder {
+  color: #E891F4;
+}
+
+.acent-2 {
+  background: #CE5FDE;
+}
+
+.text-acent-2 {
+  color: #CE5FDE;
+}
+
+.placeholder-acent-2::placeholder {
+  color: #CE5FDE;
+}
+
+.acent-3 {
+  background: #89059C;
+}
+
+.text-acent-3 {
+  color: #89059C;
+}
+
+.placeholder-acent-3::placeholder {
+  color: #89059C;
+}
+
+.acent-4 {
+  background: #53085D;
+}
+
+.text-acent-4 {
+  color: #53085D;
+}
+
+.placeholder-acent-4::placeholder {
+  color: #53085D;
+}
+
+.gradient-green, .left-menu ul .active, .left-menu ul li a:hover {
+  background: linear-gradient(30deg, #91F7AC, #E1FA37);
+}
+
+.gradient-red {
+  background: linear-gradient(30deg, #ED1E03, #B02DC2);
+}
+
+.left-menu {
+  width: 300pt;
+  background: #000;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  font-size: 1.1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  -webkit-box-shadow: 2pt 0 5pt rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 2pt 0 5pt rgba(0, 0, 0, 0.3);
+  -ms-box-shadow: 2pt 0 5pt rgba(0, 0, 0, 0.3);
+  -o-box-shadow: 2pt 0 5pt rgba(0, 0, 0, 0.3);
+  box-shadow: 2pt 0 5pt rgba(0, 0, 0, 0.3);
+}
+.left-menu ul {
+  list-style: none;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+.left-menu ul li a {
+  color: #E1FA37;
+  display: block;
+  width: 90%;
+  padding: 5%;
+  text-decoration: none;
+  font-size: 1.2em;
+  transition: all 0.7s;
+}
+.left-menu ul li a > *[class*=fa-] {
+  margin-right: 20pt;
+  font-size: 2em;
+  position: relative;
+  top: 20pt;
+  transform: translate(0, -50%);
+}
+.left-menu ul li a:hover {
+  color: #000;
+  font-weight: bolder;
+  width: 105%;
+  -webkit-box-shadow: 2pt 0 5pt rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 2pt 0 5pt rgba(0, 0, 0, 0.3);
+  -ms-box-shadow: 2pt 0 5pt rgba(0, 0, 0, 0.3);
+  -o-box-shadow: 2pt 0 5pt rgba(0, 0, 0, 0.3);
+  box-shadow: 2pt 0 5pt rgba(0, 0, 0, 0.3);
+}
+.left-menu ul .active {
+  color: #000;
+  font-weight: bolder;
+}
+
+.input-file {
+  display: none;
+}
+
+div.input {
+  display: inline-block;
+  position: relative;
+}
+
+input {
+  outline: none;
+}
+
+input.input {
+  display: inline-block;
+  min-width: 240pt;
+  padding: 5pt 18pt;
+  border-radius: 20pt;
+  border: none;
+  margin: 5pt 10pt 5pt 2pt;
+  font-size: 1.2em;
+  color: black;
+}
+
+.input-file-icon {
+  font-size: 1.8em;
+  position: absolute;
+  top: 2pt;
+  right: 20pt;
+  display: inline-block;
+  padding: 4pt 2pt;
+  border-radius: 20pt;
+  margin: 0;
+  cursor: pointer;
+}
+.input-file-icon:hover {
+  transform: scale(1.2);
+}
+
+.center-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container, .round-container {
+  position: relative;
+  padding: 20pt;
+}
+
+.round-container {
+  border-radius: 20pt;
+}
+
+.shadow {
+  -webkit-box-shadow: 0 2pt 5pt rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 2pt 5pt rgba(0, 0, 0, 0.3);
+  -ms-box-shadow: 0 2pt 5pt rgba(0, 0, 0, 0.3);
+  -o-box-shadow: 0 2pt 5pt rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2pt 5pt rgba(0, 0, 0, 0.3);
+}
+
+.fullheight {
+  height: 100vh;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.btn, .btn-g-green {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 5pt 10pt;
+  font-size: 1.1em;
+  min-width: 100pt;
+  position: relative;
+  cursor: pointer;
+  font-weight: bolder;
+}
+.btn:hover::before, .btn-g-green:hover::before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  content: attr(value);
+  height: 100%;
+  width: 100%;
+  color: #E1FA37;
+  text-transform: capitalize;
+  background: black;
+  animation: left2right 0.6s 1;
+  overflow: hidden;
+  font-family: Satisfy;
+  font-weight: normal;
+  font-size: 1.5em;
+}
+
+.border-radius, .btn-g-green {
+  border-radius: 20pt;
+}
+
+.btn-g-green {
+  background: linear-gradient(15deg, #91F7AC, #E1FA37);
+  border: none;
+}
+
+@keyframes left2right {
+  0% {
+    width: 0;
+    color: black;
+  }
+  90% {
+    color: black;
+  }
+  100% {
+    width: 100%;
+  }
+}
+* {
+  font-family: Mukta;
+}
+
+body {
+  background: #f5f5f5;
+  position: fixed;
+  right: 0;
+  top: 0;
+  left: 300pt;
+  min-height: 100vh;
+}
+
+/*# sourceMappingURL=main.css.map */

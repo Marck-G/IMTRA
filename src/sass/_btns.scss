@@ -1,7 +1,8 @@
 .btn{
     text-transform: uppercase;
     text-decoration: none;
-    padding: 3pt 10pt;
+    padding: 5pt 10pt;
+    font-size: 1.1em;
     min-width: 100pt;
     position: relative;
     cursor: pointer;
@@ -13,7 +14,7 @@
         content: attr(value);
         height: 100%;
         width: 100%;
-        color: white;
+        color: $color-primary-0;
         text-transform: capitalize;
         background: black;
         animation: left2right .6s 1;

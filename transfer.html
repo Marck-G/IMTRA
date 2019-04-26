@@ -10,9 +10,8 @@ title: IMTRA Transfer
                 Select the origin  folder:
             </p>
             <div class="input">
-                <input type="text" placeholder="Origin folder" class="placeholder-black input gradient-green" id="src_info">
-                <input type="file" id="src_file" class="input-file">
-                <div class="input-file-icon" for="src_file">
+                <input class="placeholder-black input gradient-green" id="src_info" placeholder="Origin folder" type="text">
+                <div class="input-file-icon file-btn" watcher='src_info'>
                     <i class="fas fa-folder text-black"></i>
                 </div>
             </div>
@@ -21,9 +20,8 @@ title: IMTRA Transfer
                 Select the destination folder:
             </p>
             <div class="input">
-                <input type="text" placeholder="Destination folder" class="input placeholder-white gradient-red" id="dest_info">
-                <input type="file" id="dest_file" class="input-file">
-                <div class="input-file-icon" for="dest_file">
+                <input class="input placeholder-white gradient-red" id="dest_info" placeholder="Destination folder" type="text">
+                <div class="input-file-icon file-btn" watcher='dest_info'>
                     <i class="fas fa-folder text-white"></i>
                 </div>
             </div>

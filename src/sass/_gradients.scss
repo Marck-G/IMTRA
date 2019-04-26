@@ -1,0 +1,11 @@
+@import 'mixins/gradients';
+$gradient-green: $color-secondary-1-1, $color-primary-0;
+$gradient-red: $color-secondary-2-3, $color-complement-0;
+
+.gradient-green{
+    @include linear-gradient(30deg, $gradient-green);
+}
+
+.gradient-red{
+    @include linear-gradient(30deg, $gradient-red);
+}

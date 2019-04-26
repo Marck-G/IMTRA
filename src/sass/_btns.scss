@@ -1,0 +1,48 @@
+.btn{
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 3pt 10pt;
+    min-width: 100pt;
+    position: relative;
+    cursor: pointer;
+    font-weight: bolder;
+    &:hover::before{
+        position: absolute;
+        left: 0;
+        top: 0;
+        content: attr(value);
+        height: 100%;
+        width: 100%;
+        color: white;
+        text-transform: capitalize;
+        background: black;
+        animation: left2right .6s 1;
+        overflow: hidden;
+        font-family: $alter-font;
+        font-weight: normal;
+        font-size: 1.5em;
+    }
+}
+.border-radius{
+    border-radius: 20pt;
+}
+
+.btn-g-green{
+    @include linear-gradient(15deg, $gradient-green);
+    @extend .btn;
+    border: none;
+    @extend .border-radius;
+}
+
+@keyframes left2right{
+    0%{
+        width: 0;
+        color: black;
+    }
+    90%{
+        color: black;
+    }
+    100%{
+        width: 100%;
+    }
+}

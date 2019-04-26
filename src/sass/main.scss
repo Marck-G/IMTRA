@@ -1,0 +1,15 @@
+@import 'fonts','colors', 'vars', 'gradients';
+@import 'menu', 'inputs', 'container', 'texts', 'btns';
+
+*{
+    font-family: Mukta;
+}
+
+body{
+    background: $body-background;
+    position: fixed;
+    right: 0;
+    top: 0;
+    left: $menu-width;
+    min-height: 100vh;
+}

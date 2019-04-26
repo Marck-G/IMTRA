@@ -1,0 +1,23 @@
+.center-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container{
+    position: relative;
+    padding: 20pt;
+}
+
+.round-container{
+    @extend .container;
+    border-radius: 20pt;
+}
+
+.shadow{
+    @include suffix(box-shadow, 0 2pt 5pt rgba(#000, 0.3));
+}
+
+.fullheight{
+    height: 100vh;
+}

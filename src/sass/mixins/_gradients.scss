@@ -1,0 +1,29 @@
+@import "suffix";
+
+/// make a gradient text
+/// @param {*} $type 
+/// @param {list} $colors...
+
+@mixin radial-gradient-text($type, $colors...) {
+    background: radial-gradient($type, $colors...);
+
+    @include suffix(background-clip, text);
+
+    color: transparent;
+}
+
+/// Create a linear gradient text
+/// @param {*} $direction 
+/// @param {list} $gradients...
+
+@mixin linear-gradient-text($direction, $gradients...) {
+    background: linear-gradient($direction, $gradients...);
+
+    @include suffix(background-clip, text);
+
+    color: transparent;
+}
+
+@mixin linear-gradient($direction, $colors...) {
+    background: linear-gradient($direction, $colors...);
+}

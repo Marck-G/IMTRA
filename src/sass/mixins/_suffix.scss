@@ -1,0 +1,13 @@
+$suffixes: webkit, moz, ms, o !default;
+
+/// Put to any property al the suffix for all browsers
+/// @param {*} $property 
+/// @param {*} $value 
+/// @param {list} $suffixList [$suffixes]
+
+@mixin suffix($property, $value, $suffixList: $suffixes) {
+    @each $suffix in $suffixList {
+        -#{$suffix}-#{$property}: $value;
+    }
+    #{$property}: $value;
+}

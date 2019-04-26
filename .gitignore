@@ -1,5 +1,8 @@
 */node_modules/
 .idea/
 venv/
-style/.vscode/
+style/
+.vscode/
 _site/
+.sass-cache/
+*.map

@@ -26,17 +26,21 @@ from utils.logger import Logger
 
 class Manager:
     """
-            Class DataBase Manager
-        """
+        Class DataBase Manager
+    """
     # TODO: set the proyect data estructure
 
     __instance__ = None
+
     # creation file name
     __db_file__ = 'imtr.cre.db.sql'
     __db_name__ = 'transfer.db'
 
     # sqlite connection
     conn = sqlite3.connect(__db_name__)
+
+    # Insert comment here
+    __db_file_delete__ = "imtr.del.db.sql"
 
     # Insert comment here
     __db_folder__ = "./"

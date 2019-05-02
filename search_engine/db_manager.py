@@ -47,7 +47,6 @@ class DBManager:
     __db_file_delete__ = "se.del.db.sql"
 
     # Insert comment here
-    delete_file = "se.del.db.sql"
     __log_file__ = "../.log"
 
     # Insert comment here
@@ -86,7 +85,7 @@ class DBManager:
         Delete the database
         :return:
         """
-        qry = open(self.__db_folder__ + self.delete_file, 'r').read()
+        qry = open(self.__db_folder__ + self.__db_file_delete__, 'r').read()
         c = self.conn.cursor()
         c.executescript(qry)
         c.close()
@@ -237,6 +236,7 @@ class DBManager:
         return img == 0
 
 
+
+
 class ConditionsNotFoundError(Exception):
     pass
-

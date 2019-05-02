@@ -4,6 +4,7 @@ from search_engine import reader
 from utils.logger import Logger
 from image_transfer.data_interpreter import dir as DIR
 
+
 class Transfer:
     __name__ = 'Image Transfer Module'
     __base_dir__ = None

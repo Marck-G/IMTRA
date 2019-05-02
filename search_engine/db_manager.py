@@ -21,7 +21,6 @@
 # SOFTWARE.
 
 import sqlite3
-from _datetime import datetime
 from os import path
 from utils.logger import Logger
 
@@ -31,16 +30,29 @@ class DBManager:
         Class DataBase Manager
     """
     # TODO: set the proyect data estructure
-    __db_file__ =  "DB_IMTRA.db"
-    conn = sqlite3.connect(__db_file__)
-    create_file = "se.create.db.sql"
-    delete_file = "se.del.db.sql"
-    __log_file__ = "../.log"
+
+    # Insert comment here
     __instance__ = None
     __dic__ = None
+    __db__ = {}
+
+    # creation file name
+    __db_file__ = "se.create.db.sql"
+    __db_name__ = "search.db"
+
+    # sqlite connection
+    conn = sqlite3.connect(__db_name__)
+
+    # Insert comment here
+    __db_file_delete__ = "se.del.db.sql"
+
+    # Insert comment here
+    delete_file = "se.del.db.sql"
+    __log_file__ = "../.log"
+
+    # Insert comment here
     __db_folder__ = "./"
     __log_folder__ = "./"
-    __db__ = {}
 
     # singleton
     def __new__(cls):
@@ -48,7 +60,7 @@ class DBManager:
             cls.__instance__ = object.__new__(cls)
             return cls.__instance__
 
-    def set_db_file_folder(self,base_dir):
+    def set_db_file_folder(self, base_dir):
         self.__db_folder__ = base_dir if str(base_dir).endswith('/') else base_dir + '/'
         return self
 
@@ -61,7 +73,7 @@ class DBManager:
         Create the database
         :return:
         """
-        qry = open(self.__db_folder__ + self.create_file, 'r').read()
+        qry = open(self.__db_folder__ + self.__db_file__, 'r').read()
         c = self.conn.cursor()
         c.executescript(qry)
         c.close()
@@ -167,7 +179,7 @@ class DBManager:
         :return: boolean
         """
         # check if db file exist
-        exist_file = path.exists(self.__db_file__)
+        exist_file = path.exists(self.__db_name__)
         if exist_file:
             if len( self.__get_db_tables__()) != 0:
                 return True
@@ -223,10 +235,6 @@ class DBManager:
         img = cur.execute("SELECT * FROM img WHERE id=?", img_id).rowcount
         cur.close()
         return img == 0
-
-
-
-
 
 
 class ConditionsNotFoundError(Exception):

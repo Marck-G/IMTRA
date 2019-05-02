@@ -1,7 +1,6 @@
 import datetime
 
 
-
 def dir(d, format = 'yyyy/MM/dd-MM-yy', sys_date=False):
     """
     Generate a path string with the date and the format

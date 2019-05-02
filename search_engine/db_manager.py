@@ -31,9 +31,11 @@ class DBManager:
     """
     # TODO: set the proyect data estructure
 
-    # Insert comment here
+    # singleton var
     __instance__ = None
+    # dictionary for translate the column names into exift tags
     __dic__ = None
+    # dictionario for map the database
     __db__ = {}
 
     # creation file name
@@ -43,13 +45,14 @@ class DBManager:
     # sqlite connection
     conn = sqlite3.connect(__db_name__)
 
-    # Insert comment here
+    # db delete file
     __db_file_delete__ = "se.del.db.sql"
 
-    # Insert comment here
+    # log file, contains all information about any operation
+    # on database and all errors
     __log_file__ = "../.log"
 
-    # Insert comment here
+    # if there is any file folder for db files and log files
     __db_folder__ = "./"
     __log_folder__ = "./"
 

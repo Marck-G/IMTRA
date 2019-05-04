@@ -90,7 +90,7 @@ class Transfer:
     def __exists_img__(self, img):
         return os.path.exists(img)
 
-    def hasDuplicates(self):
+    def has_duplicates(self):
         return self.duplicated_images is not None and len(self.duplicated_images) != 0
 
     def get_duplicates(self):
@@ -146,6 +146,12 @@ class Transfer:
                        "number": i + 1,
                        "total": self.get_size(),
                        "error": e})
+
+    # transfer the dupicate image, need a callback function
+    def transfer_duplicatesl(self, callback):
+        for i,image in enumerate(self.duplicated_images):
+            self.transfer(image)
+            callback({"image": image, "status": "ok", "number": i + 1, "total": len(self.duplicated_images)})
 
     class BaseErrorNotFoundError (Exception):
         def __init__(self, msg, log):

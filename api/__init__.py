@@ -1,5 +1,5 @@
 from search_engine.reader import Reader
-
+from image_transfer.transfer import Transfer
 
 def search(data):
     pass
@@ -29,3 +29,15 @@ def read(petition: dict) -> dict:
 def tagger(img):
     pass
 
+def transfer(petition: dict):
+    assert petition is not None, "No petition found"
+    origin = petition["source"]
+    target = petition["target"]
+    callback = petition["callback"]
+    duplicate_callback = petition["duplicate_callback"] if petition["duplicate_callback"] else None
+    transfer = Transfer()
+    transfer.set_base_dir(origin)
+    transfer.set_dest_dir(target)
+    transfer.transfer_all(callback)
+    if duplicate_callback is not None and transfer.has_duplicates():
+        duplicate_callback(transfer.get_duplicates())

@@ -1,5 +1,6 @@
 from search_engine.reader import Reader
 from image_transfer.transfer import Transfer
+from image_manager.autotagger import tags_from as tag
 
 def search(data):
     pass
@@ -26,8 +27,10 @@ def read(petition: dict) -> dict:
     return out
 
 
-def tagger(img):
-    pass
+def tagger(pettition: dict) -> dict:
+    assert pettition is not None, "No petition found"
+    assert pettition['image'], "Image not found"
+    return tag(pettition['image'])
 
 def transfer(petition: dict):
     assert petition is not None, "No petition found"

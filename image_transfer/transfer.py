@@ -153,6 +153,11 @@ class Transfer:
             self.transfer(image)
             callback({"image": image, "status": "ok", "number": i + 1, "total": len(self.duplicated_images)})
 
+    def save_transfer(self):
+        if self.__dest_dir__ is None and self.__base_dir__ is None:
+            return
+
+
     class BaseErrorNotFoundError (Exception):
         def __init__(self, msg, log):
             Exception.__init__(msg)

@@ -56,7 +56,7 @@ class DBManager:
     __db_folder__ = "./"
     __log_folder__ = "./"
 
-    # singleton
+    # SINGLETON
     def __new__(cls):
         if cls.__instance__ is None:
             cls.__instance__ = object.__new__(cls)
@@ -237,8 +237,6 @@ class DBManager:
         img = cur.execute("SELECT * FROM img WHERE id=?", img_id).rowcount
         cur.close()
         return img == 0
-
-
 
 
 class ConditionsNotFoundError(Exception):

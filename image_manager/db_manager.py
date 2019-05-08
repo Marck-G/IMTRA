@@ -21,6 +21,7 @@
 # SOFTWARE.
 
 import sqlite3
+from os import path
 from utils.logger import Logger
 
 
@@ -46,7 +47,7 @@ class Manager:
     __db_folder__ = "./"
     __log_folder__ = "./"
 
-    # singleton
+    # SINGLETON
     def __new__(cls, *args, **kwargs):
         if cls.__instance__ is None:
             cls.__instance__ = object.__new__(cls)
@@ -102,4 +103,40 @@ class Manager:
         Create a log file with de date and the text
         :param text: to include in the log file
         """
-        Logger(prefix=' Search Engine').log(text)
+        Logger(prefix=' Image Manager').log(text)
+
+    def __exists__(self):
+        """
+        Check if the db exists and have its tables
+        :return: boolean
+        """
+        # check if db file exist
+        exist_file = path.exists(self.__db_name__)
+        if exist_file:
+            if len( self.__get_db_tables__()) != 0:
+                return True
+            else:
+                self.__log__('No tables found')
+        else:
+            self.__log__('Not found db file')
+        return False
+
+    def __db_init__(self):
+        if not self.__exists__():
+            self.create_database()
+
+    def get_tag(self, *args, data):
+        cur = self.conn.execute('SELECT * FROM tag where {} like "*{}*" '.format(data['col'], data['value']))
+        response = {}
+        for col in cur:
+            response[col] = cur[col]
+
+    def get_tag(self, *args, data):
+        cur = self.conn.execute('SELECT * FROM image where {} like "*{}*" '.format(data['col'], data['value']))
+        response = {}
+        for col in cur:
+            response[col] = cur[col]
+
+
+class ConditionsNotFoundError(Exception):
+    pass

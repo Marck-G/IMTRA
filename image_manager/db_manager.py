@@ -34,14 +34,14 @@ class Manager:
     __instance__ = None
 
     # creation file name
-    __db_file__ = 'imtr.cre.db.sql'
-    __db_name__ = 'transfer.db'
+    __db_file__ = 'im.cre.db.sql'
+    __db_name__ = 'manager.db'
 
     # sqlite connection
     conn = sqlite3.connect(__db_name__)
 
     # Insert comment here
-    __db_file_delete__ = "imtr.del.db.sql"
+    __db_file_delete__ = "im.del.db.sql"
 
     # Insert comment here
     __db_folder__ = "./"
@@ -131,7 +131,7 @@ class Manager:
         for col in cur:
             response[col] = cur[col]
 
-    def get_tag(self, *args, data):
+    def get_image(self, *args, data):
         cur = self.conn.execute('SELECT * FROM image where {} like "*{}*" '.format(data['col'], data['value']))
         response = {}
         for col in cur:

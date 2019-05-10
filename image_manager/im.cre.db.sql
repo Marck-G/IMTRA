@@ -7,7 +7,7 @@ CREATE TABLE tag(
 -- CREATE TABLE IMAGE
 CREATE TABLE image(
     id              INTEGER   NOT NULL , -- Primary Key
-    external_id     INTEGER ,
+    path            TEXT ,
     PRIMARY KEY ( tag )
 );
 

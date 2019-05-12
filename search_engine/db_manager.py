@@ -136,7 +136,7 @@ class DBManager:
         for table in self.__get_db_tables__():
             self.__db__[table] = self.__get_db_columns__(table)
 
-    def add_item(self, dic):
+    def add_item(self, dic: dict):
         """
         Insert data into database from data dictionary
         :param dic: data to insert in db
@@ -168,7 +168,7 @@ class DBManager:
         self.conn.commit()
         return self
 
-    def __log__(self, text):
+    def __log__(self, text: str):
         """
         Create a log file with de date and the text
         :param text: to include in the log file
@@ -195,19 +195,19 @@ class DBManager:
         if not self.__exists__():
             self.create_database()
 
-    def get_gps(self,*args, latitude, longitude):
+    def get_gps(self, *args, latitude, longitude):
         cur = self.conn.execute('SELECT * FROM gps where lat={} AND log={}'.format(latitude,longitude))
         response = {}
         for col in cur:
             response[col] = cur[col]
 
-    def get_lens(self, *args, data ):
+    def get_lens(self, *args, data: dict):
         cur = self.conn.execute('SELECT * FROM lens where {} like "*{}*" '.format(data['col'], data['value']))
         response = {}
         for col in cur:
             response[col] = cur[col]
 
-    def get_place(self, *args, data ):
+    def get_place(self, *args, data: dict):
         cur = self.conn.execute('SELECT * FROM place where {} like "*{}*" '.format(data['col'], data['value']))
         response = {}
         for col in cur:
@@ -219,19 +219,19 @@ class DBManager:
         for col in cur:
             response[col] = cur[col]
 
-    def get_img(self, *args, data ):
+    def get_img(self, *args, data: dict):
         cur = self.conn.execute('SELECT * FROM img where {} like "*{}*" '.format(data['col'], data['value']))
         response = {}
         for col in cur:
             response[col] = cur[col]
 
-    def get_img_studio(self, *args, data):
+    def get_img_studio(self, *args, data: dict):
         cur = self.conn.execute('SELECT * FROM img_studio where {} like "*{}*" '.format(data['col'], data['value']))
         response = {}
         for col in cur:
             response[col] = cur[col]
 
-    def exist_item(self, data):
+    def exist_item(self, data: dict):
         img_id = data["id"]
         cur = self.conn.cursor()
         img = cur.execute("SELECT * FROM img WHERE id=?", img_id).rowcount

@@ -58,8 +58,7 @@ class SearchEngine:
     def __db_store__(self):
         self.__db_manager__.add_item(self.__reader__.get_data())
 
-
-    def set_filter(self, fil):
+    def set_filter(self, fil: list):
         if fil is None:
             raise NoImageSetError("No Filter found. Search Engine Error!")
         self.__filter__ = fil
@@ -79,26 +78,19 @@ class SearchEngine:
         for key in map:
             self.__replaces_key__.append(map[key])
 
-    def search(self, data):
-        # segun la informacion que pase se pasa a una tabla u otra, hay que hacer un switch case
-        # para los datos introducidos
+    def search(self, data: dict):
         """
-
-        :param data: search in one line string
+        with the dictionary make the database request and return the images ids
+        :param data: search dict
         :return: list with the images referenced id
         """
-
-        data_split = str(data).split(self.__column_separator__)
-        search_data = {}
-        # generate the search map
-        if len(data_split) == 1:
-            temp_split = data_split[0].split(self.__value_separator__)
-            search_data[temp_split[0]] = temp_split[1]
-        else:
-            for search_line in data_split:
-                split = str(search_data).split(self.__value_separator__)
-                search_data[split[0]] = split[1]
-        return self.__db_manager__.getItem(where_map=search_data)
+        table = data['table']
+        if table == 'lens':
+            return self.__db_manager__.get_lens(data= data)
+        if table == 'camera':
+            return self.__db_manager__.get_camera(data=data)
+        if table == 'studio':
+            return self.__db_manager__.get_img_studio(data=data)
 
 
 class NoImageSetError(Exception):

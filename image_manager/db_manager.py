@@ -95,9 +95,6 @@ class Manager:
             query = 'INSERT INTO transfer_data values({},{})'.format(data['src'], data['dest'])
             cursor.execute(query)
 
-    def get_last_elements(self):
-        pass
-
     def __log__(self, text):
         """
         Create a log file with de date and the text

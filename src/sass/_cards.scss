@@ -1,0 +1,31 @@
+.card{
+    min-width: 150pt;
+    width: 90%;
+    height: 200pt;
+    margin: 10pt 5pt;
+    background: #cacaca;
+    padding-bottom: 10pt;
+    border-radius: 20pt;
+    overflow: hidden;
+    transition: all .7s;
+    .c_img{
+        min-height: 170pt;
+        width: 100%;
+        background: #333;
+        border-radius: 20pt;
+
+    }
+    
+    .c_ctn{
+        margin: 20pt auto;
+        height: 10pt;
+        width: 70%;
+        background: #333;
+        border-radius: 20pt;
+
+    }
+
+    &:hover{
+        box-shadow: 0 10pt 15pt rgba($color: #000000, $alpha: 0.6);
+    }
+}

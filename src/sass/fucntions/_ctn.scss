@@ -1,0 +1,7 @@
+@function repeater( $char, $n){
+    $c:"";
+  @for $i from 1 through $n {
+    $c: $c + $char;
+ }
+    @return $c;
+}

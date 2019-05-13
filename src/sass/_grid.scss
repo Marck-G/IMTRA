@@ -1,0 +1,10 @@
+@import 'vars';
+.table{
+    display: grid;
+}
+
+@each $col in $columns-template {
+    .g-#{$col}-cols{
+        grid-template-columns: #{repeater('auto ', $col)};
+    }
+}

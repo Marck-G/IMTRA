@@ -45,7 +45,7 @@ class Manager:
     __log_folder__ = "./"
 
     # sqlite connection
-    conn = db.connect()
+    conn = db.connect(__bd_name__)
 
     # SINGLETON
     def __new__(cls, *args, **kwargs):
@@ -78,7 +78,7 @@ class Manager:
            Delete the database
            :return:
         """
-        qry = open(self.__db_folder__ + self.delete_file, 'r').read()
+        qry = open(self.__db_folder__ + self.__db_file_delete__, 'r').read()
         c = self.conn.cursor()
         c.executescript(qry)
         c.close()
@@ -86,18 +86,30 @@ class Manager:
         self.__log__('delete the database')
         return self
 
-    def save_item(self, data: dict):
+    def add_item(self, data: dict):
         """
         Recive un diccionario con los datos y se guardan en la base de datos
         :param data: diccionario con la estructura: { origin: origen, dest: destino, date : fecha}
         :return:
         """
-        pass
+        # general insert into string
+        insert_sql = "INSERT INTO {}({}) values({})"
+        table = "transfer"
+        # get the db columns that match with the dict keys
+        for x in data:
+            insert = insert_sql.format(table, ",".join(data.keys()), ",".join(data.values()))
+            self.__log__(insert)
+            # execute the command
+            self.conn.execute(insert)
+            # save al changes
+        self.conn.commit()
+        return self
 
     def get_item(self) -> dict:
         # realiza la consulta y coge los 5 primeros elementos de la consulta
         # el resultado será en
-        pass
+        response = cur = self.conn.execute("SELECT path, count(path) c, ( SELECT max(trf_date) d FROM transfer WHERE main.path = path ) dat FROM transfer main WHERE type = 'D' GROUP BY path ORDER BY c DESC, dat DESC").fetchmany(5)
+        return response
 
     def __log__(self, text):
         """
@@ -135,3 +147,8 @@ class Manager:
 
 class ConditionsNotFoundError(Exception):
     pass
+
+
+
+
+

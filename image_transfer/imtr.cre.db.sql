@@ -1,8 +1,8 @@
--- CREATE TABLE CAMERA
+-- CREATE TABLE transfer
 CREATE TABLE transfer(
      id         INTEGER   NOT NULL , -- Primary Key
-     src        TEXT ,
-     dest       TEXT ,
-     date       date ,
+     path       TEXT ,
+     trf_date   DATE ,
+     type       TEXT ,
      PRIMARY KEY ( id )
 );

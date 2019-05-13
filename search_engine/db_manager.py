@@ -39,7 +39,7 @@ class DBManager:
     __db__ = {}
 
     # creation file name
-    __db_file__ = "se.create.db.sql"
+    __db_file__ = "se.cre.db.sql"
     __db_name__ = "search.db"
 
     # sqlite connection

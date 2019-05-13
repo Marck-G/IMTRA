@@ -95,13 +95,12 @@ class Manager:
         # general insert into string
         insert_sql = "INSERT INTO {}({}) values({})"
         table = "transfer"
-        # get the db columns that match with the dict keys
-        for x in data:
-            insert = insert_sql.format(table, ",".join(data.keys()), ",".join(data.values()))
-            self.__log__(insert)
-            # execute the command
-            self.conn.execute(insert)
-            # save al changes
+        # coment Here
+        insert = insert_sql.format(table, ",".join(data.keys()), ",".join(data.values()))
+        self.__log__(insert)
+        # execute the command
+        self.conn.execute(insert)
+        # save al changes
         self.conn.commit()
         return self
 

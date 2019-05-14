@@ -37,10 +37,10 @@ class Manager:
     __db_file__ = 'imtr.cre.db.sql'
     __bd_name__ = 'transfer.db'
 
-    # Insert comment here
+    # database deletion file name
     __db_file_delete__ = 'imtr.del.db.sql'
 
-    # Insert comment here
+    # set the files folders
     __db_folder__ = "./"
     __log_folder__ = "./"
 
@@ -104,11 +104,30 @@ class Manager:
         self.conn.commit()
         return self
 
-    def get_item(self) -> dict:
-        # realiza la consulta y coge los 5 primeros elementos de la consulta
-        # el resultado será en
+    def get_dest(self) -> dict:
+       """
+       Find in the database the dest dir more used.
+       return: dict with the destination dir
+       """
+        out = {}
         response = cur = self.conn.execute("SELECT path, count(path) c, ( SELECT max(trf_date) d FROM transfer WHERE main.path = path ) dat FROM transfer main WHERE type = 'D' GROUP BY path ORDER BY c DESC, dat DESC").fetchmany(5)
-        return response
+        # generate the output dictionary
+        for col in response.keys():
+            out[col] = response[col]
+        return out
+    
+    def get_src(self) -> dict:
+       """
+       Find in the database the origin dir more used.
+       return: dict with the origin dirs
+       """
+        out = {}
+        response = cur = self.conn.execute("SELECT path, count(path) c, ( SELECT max(trf_date) d FROM transfer WHERE main.path = path ) dat FROM transfer main WHERE type = 'O' GROUP BY path ORDER BY c DESC, dat DESC").fetchmany(5)
+        # generate the output dictionary
+        for col in response.keys():
+            out[col] = response[col]
+        return out
+
 
     def __log__(self, text):
         """

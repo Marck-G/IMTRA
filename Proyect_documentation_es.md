@@ -63,4 +63,8 @@ Para la interfaz se ha usado una librería que permite la creación de un servid
 Para el tema de la _inteligencia artificial_ se ha utilizado una API REST __para agilizar el procesado de imágenes y evitar la dependencia del hardware__. En concreto se ha usado  [Clarifai](https://clarifai.com/).
 
 # 4. Módulo Image Manager
-Módulo encargado de la  importación de las imágenes,
+Módulo encargado de la  importación, etiquetado y eliminación de imágenes. Este consta de un etiquetador automático, una base de datos propia y un sistema de copias de seguridad.
+![](img_mng.png)
+
+## 4.1 Etiquetador Automatico
+Mediante un _API REST_

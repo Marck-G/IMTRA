@@ -91,6 +91,10 @@ class SearchEngine:
             return self.__db_manager__.get_camera(data=data)
         if table == 'studio':
             return self.__db_manager__.get_img_studio(data=data)
+        if table == 'gps':
+            return self.__db_manager__.get_gps(latitude=data['lat'], longitude=data['log'])
+        if table == 'place':
+            return self.__db_manager__.get_place(data=data)
 
 
 class NoImageSetError(Exception):

@@ -43,7 +43,7 @@ class Reader:
             # in data we have a hash map with all exif tags
             file.close()
 
-    def get_data(self):
+    def get_data(self) -> dict:
         """
         :return: full image exif tags
         """
@@ -55,7 +55,7 @@ class Reader:
         self.image = img
         self.data = None
 
-    def get_filter_tag(self, filter_list):
+    def get_filter_tag(self, filter_list: list) -> dict:
         """:param filter_list list of tags to return
         :return map with the requires tags and values
         """

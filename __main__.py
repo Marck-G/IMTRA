@@ -12,3 +12,5 @@ def chouse_folder(targe, title='Selection', initialdir=False):
 
 def set_by_id(id, content):
     app.setById(id, content)
+
+app.start('main.html')

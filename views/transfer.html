@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <title>IMTRA</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="libs/fontawesome/css/all.min.css">
+    <script src="libs/fontawesome/js/all.min.js"></script>
+</head>
+    <body>
+        <nav class="left-menu">
+    <ul>
+        <li><a href="main.html" class=""> <i class="fa fa-image"></i> Images</a></li>
+        <li><a href="transfer.html"class=" active"><i class="fa fa-sync"></i> Transfer Images</a></li>
+        <li><a href="search.html" class=""><i class="fa fa-search"></i> Search</a></li>
+    </ul>
+</nav>
+        <div id="transfer">
+    <div class="center-container fullheight">
+        <div class="round-container shadow black">
+            <p class="text-white">
+                Select the origin  folder:
+            </p>
+            <div class="input">
+                <input class="placeholder-black input gradient-green" id="src_info" placeholder="Origin folder" type="text">
+                <div class="input-file-icon file-btn" watcher='src_info'>
+                    <i class="fas fa-folder text-black"></i>
+                </div>
+            </div>
+            <br><br>
+            <p class="text-white">
+                Select the destination folder:
+            </p>
+            <div class="input">
+                <input class="input placeholder-white gradient-red" id="dest_info" placeholder="Destination folder" type="text">
+                <div class="input-file-icon file-btn" watcher='dest_info'>
+                    <i class="fas fa-folder text-white"></i>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="inline-btn align-right">
+                <button class="btn-g-green" value="Transfer">Transfer</button>
+            </div>
+        </div>
+    </div>
+</div>
+        <script src="/eel.js"></script>
+        <script src="js/inputs.files.js"></script>
+        <script src="js/main.min.js"></script>
+    </body>
+</html>
